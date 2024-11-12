@@ -1,0 +1,61 @@
+[{
+    "id": 1,
+    "deco_name": "ball",
+    "points": 1,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/ball.svg"
+},{
+    "id": 2,
+    "deco_name": "bells",
+    "points": 2,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/bells.svg"
+},{
+    "id": 3,
+    "deco_name": "candy",
+    "points": 2,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/candy.svg"
+},{
+    "id": 4,
+    "deco_name": "gift",
+    "points": 1,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/gift.svg"
+},{
+    "id": 5,
+    "deco_name": "Ginger",
+    "points": 2,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/Ginger.svg"
+},{
+    "id": 6,
+    "deco_name": "Nudolph",
+    "points": 1,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/Nudolph.svg"
+},{
+    "id": 7,
+    "deco_name": "Santa_Hat",
+    "points": 1,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/Santa_Hat.svg"
+},{
+    "id": 8,
+    "deco_name": "Santa",
+    "points": 2,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/Santa.svg"
+},{
+    "id": 9,
+    "deco_name": "snowman",
+    "points": 3,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/snowman.svg"
+},{
+    "id": 10,
+    "deco_name": "socks",
+    "points": 1,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/socks.svg"
+},{
+    "id": 11,
+    "deco_name": "star",
+    "points": 1,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/star.svg"
+},{
+    "id": 12,
+    "deco_name": "trineo",
+    "points": 1,
+    "img": "http://127.0.0.1:5500/public/svg/decoration/trineo.svg"
+}]
