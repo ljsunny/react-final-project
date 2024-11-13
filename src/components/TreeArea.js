@@ -1,6 +1,10 @@
 import '../css/treeGrid.css';
 
-export default function TreeArea({ selectItems }) {
+export default function TreeArea({ decoItems, removeItem }) {
+  const removeClick = (key) => {
+    removeItem(key);
+  }
+
   return (
     <div className="tree-area">
       <img
@@ -8,10 +12,10 @@ export default function TreeArea({ selectItems }) {
         alt="Main Tree"
       />
       <div className="tree-grid">
-        {Object.keys(selectItems).map((key) => (
-          <div key={key} id={key}>
-            {selectItems[key] && (
-              <img src={selectItems[key].img} alt={selectItems[key].deco_name} />
+        {Object.keys(decoItems).map((key) => (
+          <div key={key} id={key} onClick={() => removeClick(key)}>
+            {decoItems[key] && (
+              <img src={decoItems[key].img} alt={decoItems[key].deco_name} />
             )}
           </div>
         ))}

@@ -3,7 +3,7 @@ import DecoItem from "./components/DecoItem";
 import { useState } from "react";
 
 function App() {
-  const [selectItems, setSelectItems] = useState({
+  const [decoItems, setDecoItems] = useState({
     "deco-item-1": null,
     "deco-item-2": null,
     "deco-item-3": null,
@@ -20,21 +20,28 @@ function App() {
   });
 
   const buyItem = (item) => {
-    const myItemList = Object.keys(selectItems).find(
-      (key) => selectItems[key] === null
+    const myItemList = Object.keys(decoItems).find(
+      (key) => decoItems[key] === null
     );
 
     if (myItemList) {
-      setSelectItems((prevState) => ({
+      setDecoItems((prevState) => ({
         ...prevState,
         [myItemList]: item,
       }));
     }
   };
 
+  const removeItem = (key) => {
+    setDecoItems((prevState) => ({
+      ...prevState,
+      [key]: null,
+    }));
+  };
+
   return (
   <>
-    <TreeArea selectItems={selectItems}/>
+    <TreeArea decoItems={decoItems} removeItem={removeItem}/>
     <DecoItem buyItem={buyItem}/>
   </>
   );

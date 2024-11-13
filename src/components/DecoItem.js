@@ -11,7 +11,7 @@ export default function DecoItem({ buyItem }) {
       .catch((error) => console.error("Error ", error));
   }, []);
 
-  const handleClick = (item) => {
+  const buyClick = (item) => {
     // we need to make the compare the points before executing buyItem
     // and show an alert for confirmation to buy
     buyItem(item); 
@@ -25,14 +25,14 @@ export default function DecoItem({ buyItem }) {
       </div>
       <ul className="DefaultItem">
         {decoration.map((item) => (
-          <li key={item.id} onClick={() => handleClick(item)}>
+          <li key={item.id} onClick={() => buyClick(item)}>
             <img src={item.img} alt={item.deco_name} />
             <p>Points: <span>{item.points}</span></p>
           </li>
         ))}
       </ul>
       <ul className="myItemList">
-        ..
+        {/* If the item remove form tree, that item show here */}
       </ul>
     </div>
   );
