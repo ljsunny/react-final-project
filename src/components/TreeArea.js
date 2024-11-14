@@ -8,7 +8,7 @@ export default function TreeArea({ decoItems, removeItem }) {
   return (
     <div className="tree-area">
       <img
-        src="http://127.0.0.1:5500/public/svg/Main-Tree.svg"
+        src="/svg/Main-Tree.svg"
         alt="Main Tree"
       />
       <div className="tree-grid">

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TreeArea from "./components/TreeArea";
-import DecoItem from "./components/DecoItem";
+import TreeArea from "../components/TreeArea";
+import DecoItem from "../components/DecoItem";
 export default function Home(){
     const [decoItems, setDecoItems] = useState({
         "deco-item-1": null,
