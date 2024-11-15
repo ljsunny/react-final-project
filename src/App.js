@@ -7,6 +7,7 @@ import Nopage from "./pages/Nopage";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import PlayHome from "./pages/playlist/PlayHome";
+import "./css/main.css";
 
 function App() {
   const [loggedInUserId, setLoggedInUserId] = useState(localStorage.getItem('loggedInUserId'));
@@ -20,6 +21,7 @@ function App() {
   };
 
   return (
+    <div style={{ backgroundColor: "#fff"}}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Master isLogin={loggedInUserId}/>}>
@@ -39,7 +41,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
-
+    </div>
   );
 }
 
