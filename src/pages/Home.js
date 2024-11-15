@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TreeArea from "../components/TreeArea";
 import DecoItem from "../components/DecoItem";
-export default function Home(){
-    const [decoItems, setDecoItems] = useState({
+import MyItemList from "../components/MyItem";
+
+export default function Home() {
+  const user = JSON.parse(localStorage.getItem("users"));
+  const userName = user[0].name;
+  
+    const saveStateLocalStorage = () => {
+    const savedPoints = localStorage.getItem("points");
+    const savedDecoItems = localStorage.getItem("decoItems");
+    const savedRemoveItems = localStorage.getItem("removeItems");
+
+    return {
+      points: savedPoints ? parseInt(savedPoints) : 100,
+      decoItems: savedDecoItems ? JSON.parse(savedDecoItems) : {
         "deco-item-1": null,
         "deco-item-2": null,
         "deco-item-3": null,
@@ -16,33 +28,93 @@ export default function Home(){
         "deco-item-11": null,
         "deco-item-12": null,
         "deco-item-13": null
-      });
-    
-      const buyItem = (item) => {
-        const myItemList = Object.keys(decoItems).find(
-          (key) => decoItems[key] === null
-        );
-    
-        if (myItemList) {
-          setDecoItems((prevState) => ({
-            ...prevState,
-            [myItemList]: item,
-          }));
-        }
-      };
-    
-      const removeItem = (key) => {
-        setDecoItems((prevState) => ({
+      },
+      removeItems: savedRemoveItems ? JSON.parse(savedRemoveItems) : [],
+    };
+  };
+
+  const { points: initialPoints, decoItems: initialDecoItems, removeItems: initialRemoveItems } = saveStateLocalStorage();
+
+  const [points, setPoints] = useState(initialPoints);
+  const [decoItems, setDecoItems] = useState(initialDecoItems);
+  const [removedItems, setRemovedItems] = useState(initialRemoveItems);
+  const [selectedTab, setSelectedTab] = useState("deco");
+
+  useEffect(() => {
+    localStorage.setItem("points", points);
+    localStorage.setItem("decoItems", JSON.stringify(decoItems));
+    localStorage.setItem("removeItems", JSON.stringify(removedItems));
+  }, [points, decoItems, removedItems]);
+
+  const TreeItemFull = () => {
+    return Object.values(decoItems).every(item => item !== null);
+  };
+
+  const buyItem = (item) => {
+    if (points >= item.points) {
+      setPoints(prevPoints => prevPoints - item.points);
+      const emptySpot = Object.keys(decoItems).find(key => decoItems[key] === null);
+      if (emptySpot) {
+        setDecoItems(prevState => ({
           ...prevState,
-          [key]: null,
+          [emptySpot]: item,
         }));
-      };
-    
-    return(
-    <>
-        <TreeArea decoItems={decoItems} removeItem={removeItem}/>
-        <DecoItem buyItem={buyItem}/>
-      </>
-        
-    )
+      } else {
+        const newItemId = {...item, id:Date.now()};
+        setRemovedItems(prevItems => [...prevItems, newItemId]);
+        alert("Your Tree is full! New Item has been added your Item List")
+      }
+    } else {
+      alert("Not enough points!");
+    }
+  };
+
+  const removeItem = (key) => {
+    const itemToRemove = decoItems[key];
+    if (itemToRemove) {
+      // make a new Id instead of JSON item id
+      // For Avoiding duplication
+      const newItemId = { ...itemToRemove, id: Date.now() };
+      setRemovedItems(prevItems => [...prevItems, newItemId]);
+      setDecoItems(prevState => ({
+        ...prevState,
+        [key]: null,
+      }));
+    }
+  };
+
+  const addMyItem = (item) => {
+    if(TreeItemFull()){
+      alert("Your Tree is full! Remove an Item first!")
+      return;
+    }
+    setDecoItems(prevState => {
+      const emptySpot = Object.keys(decoItems).find(key => decoItems[key] === null);
+      return emptySpot
+        ? { ...prevState, [emptySpot]: item }
+        : prevState;
+    });
+
+    setRemovedItems(prevItems => prevItems.filter(myItem => myItem.id !== item.id));
+  };
+
+  
+  return (
+    <div className="w-100">
+      <h1 className="treeTitle"><span>{userName}</span>'s Christmas Tree</h1>
+      <div className="d-flex flex-column flex-lg-row">
+      <TreeArea decoItems={decoItems} removeItem={removeItem} />
+      {selectedTab === "deco" ? (
+        <DecoItem buyItem={buyItem} points={points} switchToMyItems={() => setSelectedTab("myItems")} />
+      ) : (
+        <MyItemList
+          myItems={removedItems}
+          addMyItem={addMyItem}
+          points={points}
+          switchToDeco={() => setSelectedTab("deco")}
+        />
+      )}
+      </div>
+    </div>
+  );
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import '../css/treeGrid.css';
 
-export default function DecoItem({ buyItem }) {
+export default function DecoItem({ buyItem, switchToMyItems,points }) {
   const [decoration, setDecoration] = useState([]);
 
   useEffect(() => {
@@ -12,28 +12,27 @@ export default function DecoItem({ buyItem }) {
   }, []);
 
   const buyClick = (item) => {
-    // we need to make the compare the points before executing buyItem
-    // and show an alert for confirmation to buy
-    buyItem(item); 
+    const confirm = window.confirm(`if you click the "confirmation", your points reduce ${item.points}`)
+    if (confirm){
+      buyItem(item);
+    }
   };
 
   return (
     <div className="itemList">
       <div className="titleArea">
-        <h2>Your Points : 100</h2>
-        <h4>My Item &#62;</h4>
+        <h2>Your Points : {points}</h2>
+        <h4 onClick={switchToMyItems}>My Item &#62;</h4>
       </div>
-      <ul className="DefaultItem">
-        {decoration.map((item) => (
-          <li key={item.id} onClick={() => buyClick(item)}>
-            <img src={item.img} alt={item.deco_name} />
-            <p>Points: <span>{item.points}</span></p>
-          </li>
-        ))}
-      </ul>
-      <ul className="myItemList">
-        {/* If the item remove form tree, that item show here */}
-      </ul>
+        <ul className="DefaultItem">
+          {decoration.map((item) => (
+            <li key={item.id} onClick={() => buyClick(item)}>
+              <img src={item.img} alt={item.deco_name} />
+              <p>Points: <span>{item.points}</span></p>
+            </li>
+          ))}
+        </ul>
+      
     </div>
   );
 }
