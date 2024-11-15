@@ -13,7 +13,7 @@
   position: relative;
   width: 80%;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 100px;
 
   img {
     width: 100%;
@@ -23,7 +23,8 @@
   .tree-grid {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 1;
     top: 0;
     left: 0;
     display: grid;
@@ -34,6 +35,7 @@
       ". . item2 . item3 . item4 . ."
       ". item5 . item6 . item7 . item8 ."
       "item9 . item10 . item11 . item12 . item13";
+    align-items: start;
 
     div {
       display: flex;
@@ -107,9 +109,11 @@
 
   ul {
     width: 90%;
+    height: auto;
     margin: 0 auto;
+    padding: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
     grid-template-rows: auto;
     align-items: center;
@@ -117,8 +121,9 @@
 
     li {
       border: thin solid red;
+      border-radius: 10px;
+      box-shadow: 10px 10px 10px #eee;
       width: 100%;
-      height: 100%;
       aspect-ratio: 1;
       display: flex;
       flex-direction: column;
@@ -127,13 +132,41 @@
       gap: 0.5rem;
       padding: 0.5rem 0;
 
+      img {
+        display: block;
+        width: 50%;
+      }
+
       p {
         font-size: 1rem;
         font-weight: 300;
         span {
           font-weight: 500;
         }
+        margin: 0;
+        white-space: nowrap;
       }
+    }
+  }
+}
+
+.treeTitle {
+  font-size: 2rem;
+  color: #d83f3f;
+  font-weight: 700;
+  text-align: center;
+
+  span {
+    color: black;
+    font-weight: 900;
+  }
+}
+
+/* breakpoints : Large */
+@media screen and (max-width: 992px) {
+  .itemList {
+    ul {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 }
