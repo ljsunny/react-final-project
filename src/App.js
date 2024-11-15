@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import Nopage from "./pages/Nopage";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
-import PlayList from "./pages/playlist/PlayList";
+import PlayHome from "./pages/playlist/PlayHome";
 
 function App() {
   const [loggedInUserId, setLoggedInUserId] = useState(localStorage.getItem('loggedInUserId'));
@@ -23,10 +23,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Master isLogin={loggedInUserId}/>}>
-          <Route index element={<Home />} />
-          <Route path="play-list" element={<PlayList />} />
           {loggedInUserId ? 
+          <>
+            <Route index element={<Home />} />
+            <Route path="play/*" element={<PlayHome />} />
             <Route path="logout" element={<Logout onLogout={handleLogout}/>} /> 
+          </>
             : 
             <>
               <Route path="login" element={<Login onLogin={handleLogin} />} />

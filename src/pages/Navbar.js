@@ -4,28 +4,30 @@ export default function Navbar({isLogin}) {
   return (
     <nav style={{ width: "380px", backgroundColor: "#fff" }}>
       <div>
-        <ul className="navbar-nav me-auto mt-2 mt-lg-0">
-          <li className="nav-item">
-            <Link className="nav-link" to="/" aria-current="page">
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/play-list" aria-current="page">
-              PlayList
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/dash" aria-current="page">
-              Dashboard
-            </Link>
-          </li>
+        <ul className="d-flex flex-row flex-lg-column navbar-nav me-auto mt-2 mt-lg-0 space-between">
           {isLogin !== null ? (
-            <li className="nav-item">
-              <Link className="nav-link" to="/logout" aria-current="page">
-                Logout
-              </Link>
-            </li>
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/" aria-current="page">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/play" aria-current="page">
+                  PlayList
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/dash" aria-current="page">
+                  Dashboard
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/logout" aria-current="page">
+                  Logout
+                </Link>
+              </li>
+            </>
           ) : (
             <>
             <li className="nav-item">
