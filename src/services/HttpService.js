@@ -1,7 +1,7 @@
 import http from "../http-common";
 
 class HttpService{
-    get(fileName,path="data/"){
+    get(fileName,path=""){
         return http.get(`${path}/${fileName}`);
     }
 }
