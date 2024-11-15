@@ -3,9 +3,9 @@ import Navbar from "./Navbar";
 
 export default function Master({isLogin}){
     return(
-        <div className="d-flex" style={{backgroundColor:'#f2f2f2',height:'100vh'}}>
+        <div className="d-flex flex-column flex-lg-row" style={{backgroundColor:'#F2F2F2'}}>
             <Navbar isLogin={isLogin}/>
             <Outlet/> 
-        </div>
-    )
+        </div>
+    )
 }

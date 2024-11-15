@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  /* border: solid 1px blue; */
+}
+body {
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+/*navigation*/
+
+.nav-wrap {
+  position: relative;
+  z-index: 1;
+  background-color: #f2f2f2;
+}
+.navbar {
+  width: 100%;
+  background-color: #f2f2f2;
+}
+.navbar-collapse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f2f2f2;
+  z-index: 2;
+}
+
+#navbarNav {
+  background-color: #f2f2f2;
+  width: 100%;
+}
+.nav-wrap {
+  background-color: #f2f2f2;
+}
+.navbar-nav {
+  padding: 20px;
+  font-size: 18px;
+  width: 100%;
+}
+
+.navbar-nav li a {
+  background-color: #f2f2f2;
+  width: 100%;
+  margin-top: 40px;
+}
+.navbar-toggler {
+  display: flex;
+  justify-content: center; /* 横方向に中央揃え */
+  align-items: center; /* 縦方向に中央揃え */
+  z-index: 3;
+  width: 40px; /* ボタンの幅 */
+  height: 40px; /* ボタンの高さ */
+  position: relative;
+  top: 18px;
+  left: 10px;
+}
+.navbar-toggler-icon {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/*login & register*/
+.loginForm,
+.regForm {
+  background-color: #f2f2f2;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.loginForm h2,
+.regForm h2 {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: bold;
+}
+.loginForm input,
+.regForm input {
+  border-color: #bebebe;
+  width: 325px;
+  height: 80px;
+  border-radius: 30px;
+  margin: 20px auto;
+  display: block;
+}
+
+.loginForm button,
+.regForm button {
+  margin: 50px 20px;
+  background-color: #d83f3f;
+  color: #f2f2f2;
+  width: 325px;
+  height: 80px;
+  border-radius: 30px;
+  border: none;
+  display: block;
+  margin: 10% auto;
+}
+
+.red {
+  color: #d83f3f;
+}
+
+.regForm p {
+  font-size: 12px;
+  text-align: center;
+}
+
+.head-t {
+  color: #d83f3f;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.t-box {
+  margin: 0;
+  padding: 0;
+}

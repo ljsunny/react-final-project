@@ -57,7 +57,13 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="regForm">
+      <div className="d-flex mx-auto mt-5" style={{ justifyContent: 'center', alignItems: 'center'}}>
+      <img src="/santa.png"/>
+      <h1 className="head-t">Christmas Playlist</h1>
+      </div>
+      <h2>Set User Infomation</h2>
+      <p>You can only <span className="red">set the username once</span></p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -83,7 +89,7 @@ const Register = () => {
           value={formData.password}
           onChange={handleChange}
         />
-        <button type="submit">Register</button>
+        <button type="submit" className="mt-5">Register</button>
       </form>
       {message && <div className="alert alert-info">{message}</div>}
     </div>

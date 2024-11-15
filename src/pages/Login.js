@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import "../css/main.css";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
@@ -39,7 +40,12 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div>
+    <div className="loginForm">
+      <div className="d-flex mx-auto mt-5 t-box" style={{ justifyContent: 'center', alignItems: 'center'}}>
+      <img src="/santa.png"/>
+      <h1 className="head-t">Christmas Playlist</h1>
+      </div>
+      <h2>User login</h2>
       <input
         type="text"
         className="form-control mb-2"
@@ -54,7 +60,7 @@ const Login = ({ onLogin }) => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleLogin}>Login</button>
+      <button className="mt-5" onClick={handleLogin}>Login</button>
       {message && (
         <div className={alertClass} role="alert">
           {message}
