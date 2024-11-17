@@ -5,7 +5,7 @@
     "artist": "Zac Nelson",
     "duration":149,
     "src": "/Music/Zac Nelson - Merry Christmas.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "artist": "Wolf Samuels",
     "duration":96,
     "src": "/Music/Wolf Samuels - We Wish You a Merry Christmas.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/We-Wish-You-A-Merry-Christmas.jpg"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "artist": "Unknown",
     "duration":142,
     "src": "/Music/Winter-Wonderland.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "artist": "Twin Signals",
     "duration":71,
     "src": "/Music/Twin Signals - Xmas Story.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "artist": "Twin Signals",
     "duration":63,
     "src": "/Music/Twin Signals - Just in Time for Christmas.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 6,
@@ -45,7 +45,7 @@
     "artist": "T. Bless & the Professionals",
     "duration":170,
     "src": "/Music/T. Bless & the Professionals - Its Winter Time.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 7,
@@ -53,7 +53,7 @@
     "artist": "SPACETRAIN UNLIMITED",
     "duration":114,
     "src": "/Music/SPACETRAIN UNLIMITED - Christmas Wonderland.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 8,
@@ -61,7 +61,7 @@
     "artist": "Unknown",
     "duration":90,
     "src": "/Music/silent-night.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 9,
@@ -77,7 +77,7 @@
     "artist": "Unknown",
     "duration":160,
     "src": "/Music/Santa_Claus_Is_Coming_to_Town.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 11,
@@ -85,7 +85,7 @@
     "artist": "Unknown",
     "duration":126,
     "src": "/Music/jingle-bells-rock.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 12,
@@ -93,7 +93,7 @@
     "artist": "Francesco DAndrea",
     "duration":178,
     "src": "/Music/Francesco DAndrea - The Christmas Sleigh Ride.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 13,
@@ -101,7 +101,7 @@
     "artist": "Foster",
     "duration":168,
     "src": "/Music/Foster - Fall in Love This Christmas.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 14,
@@ -109,7 +109,7 @@
     "artist": "Unknown",
     "duration":217,
     "src": "/Music/christmas-bell.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 15,
@@ -117,7 +117,7 @@
     "artist": "Aves",
     "duration":177,
     "src": "/Music/Aves - Joy Ride.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 16,
@@ -125,7 +125,7 @@
     "artist": "Amos Ever Hadani",
     "duration":154,
     "src": "/Music/Amos Ever Hadani - Jingle Bells.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   },
   {
     "id": 17,
@@ -133,6 +133,6 @@
     "artist": "Unknown",
     "duration":166,
     "src": "/Music/all-i-want-for-christmas-is-you.mp3",
-    "img":"/svg/album/santa-tell-me.jpg"
+    "img":"/svg/album/default.jpg"
   }
 ]

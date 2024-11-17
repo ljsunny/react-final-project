@@ -41,7 +41,7 @@ const Login = ({ onLogin }) => {
 
   return (
     <div className="loginForm">
-      <div className="d-flex mx-auto mt-5 t-box" style={{ justifyContent: 'center', alignItems: 'center'}}>
+      <div className="d-flex mx-auto mt-5 t-box d-lg-none" style={{ justifyContent: 'center', alignItems: 'center'}}>
       <img src="/santa.png"/>
       <h1 className="head-t">Christmas Playlist</h1>
       </div>

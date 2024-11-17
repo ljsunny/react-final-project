@@ -4,6 +4,14 @@ import Audio from "../../components/Audio";
 import "../../css/playList.css";
 import HttpService from "../../services/HttpService";
 
+// for recent played music //
+function addRecentPlay(music) {
+  const recentPlays = JSON.parse(localStorage.getItem("recentPlays")) || [];
+  const updatedPlays = [music, ...recentPlays.filter((item) => item.id !== music.id)];
+  localStorage.setItem("recentPlays", JSON.stringify(updatedPlays.slice(0, 20)));//store recent played music up to 20
+}
+//////
+
 export default function PlayDetail() {
   const { id } = useParams(); // bring id from Param
   const [music, setMusic] = useState(null);
@@ -11,7 +19,7 @@ export default function PlayDetail() {
   useEffect(() => {
     HttpService.get("music.json").then(
       (res) => {
-        const foundMusic = res.data.find(({ id }) => id === Number(id));
+        const foundMusic = res.data.find((item) => item.id === Number(id));
 
         setMusic(foundMusic);
       },
@@ -20,7 +28,13 @@ export default function PlayDetail() {
       }
     );
   }, [id]);
-
+//to show recent play in profile page//
+  useEffect(() => {
+    if (music) {
+      addRecentPlay(music);
+    }
+  }, [music]);
+///////////////////////
   if (!music) {
     return <div>Loading...</div>;
   }
@@ -28,18 +42,20 @@ export default function PlayDetail() {
   return (
     <div
       className="d-flex flex-column"
-      style={{ width: "100%", justifyContent: "center", alignItems: "center" }}
+      style={{height:'100vh', width: "100%", justifyContent: "center", alignItems: "center",backgroundColor:'#FAFAFA' }}
     >
       <div
         style={{
           width: "100%",
           display: "flex",
           justifyContent: "space-between",
+          alignItems:"center",
           position: "fixed",
           top: 0,
           padding: "36px",
           fontWeight: 700,
           backgroundColor: "#fafafa",
+          zIndex:1
         }}
       >
         <Link
@@ -61,14 +77,16 @@ export default function PlayDetail() {
         <span></span>
       </div>
       <div style={{width:'80%'}}>
-        <div style={{ margin: "32px" }}>
+        <div style={{ marginBottom: "32px" }}>
           <img
             src={music.img}
-            style={{width:'100%',borderRadius: "30px" }}
-          />
+            style={{width:'100%', height:'370px', borderRadius: "30px", objectFit:'cover'}}
+          /> 
         </div>
-        <h1>{music.name}</h1>
-        <p>{music.artist}</p>
+        <div style={{marginBottom:'32px'}}>
+          <h1>{music.name}</h1>
+          <p>{music.artist}</p>
+        </div>
           <Audio src={music.src} duration={music.duration}/>
       </div>
     </div>
