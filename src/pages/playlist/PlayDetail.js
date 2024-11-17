@@ -43,7 +43,7 @@ export default function PlayDetail() {
     <div id="playDetail">
       <div className="detail-nav">
         <Link
-          to="/play"
+          to="/play/"
           className="link"
         >
           <img src="/svg/leftArrow.svg" />

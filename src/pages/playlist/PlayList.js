@@ -2,7 +2,7 @@ import "../../css/playList.css"
 import { useNavigate } from "react-router-dom";
 //a parameter of "isProfile = false" is for profile page
 export default function PlayList({musics, isProfile = false}) {
-  console.log(musics)
+
   const navigate = useNavigate();
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
