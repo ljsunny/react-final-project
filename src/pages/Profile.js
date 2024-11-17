@@ -57,33 +57,42 @@ function Profile({ userId }) {
         setProfileImage(storedProfileImage);
       }
     }
-  }, [userId]);
+  }, [userId,]);
 
   const handleSaveClick = () => {
-    // update user info
-    const users = JSON.parse(localStorage.getItem("users"));
-    if (users && users.length > 0) {
-      const updatedUsers = users.map(user =>
-        user.id === userId ? { ...user, name: newUserName, profileImage: newProfileImage } : user
-      );
-      localStorage.setItem("users", JSON.stringify(updatedUsers));
-    }
-
-    const loggedInUser = { id: userId, name: newUserName, profileImage: newProfileImage };
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const updatedUsers = users.map(user =>
+      String(user.id) === String(userId)
+        ? { 
+            ...user, 
+            name: newUserName, 
+            profileImage: newProfileImage || profileImage // 現在の画像を維持
+          }
+        : user
+    );
+  
+    // ローカルストレージを更新
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+  
+    const loggedInUser = { 
+      id: userId, 
+      name: newUserName, 
+      profileImage: newProfileImage || profileImage 
+    };
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-
-    // store
-    localStorage.setItem("userName", newUserName);
-
-    // store
-    localStorage.setItem("profileImage", newProfileImage);
-
-    // update
+    localStorage.setItem("profileImage", newProfileImage || profileImage);
+  
+    // 現在の状態を更新
     setUserName(newUserName);
-    setProfileImage(newProfileImage);
+    setProfileImage(newProfileImage || profileImage);
+  
+    // モーダルを閉じる
     setIsModalOpen(false);
+  
+    console.log("Saved profile image:", newProfileImage || profileImage);
   };
-
+  
+  
   const handleCancelClick = () => {
     setNewUserName(userName);
     setNewProfileImage(profileImage);
@@ -96,13 +105,34 @@ function Profile({ userId }) {
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64Image = reader.result;
-        setNewProfileImage(base64Image);
-        localStorage.setItem("profileImage", base64Image);  // store image
+        setNewProfileImage(base64Image); // ローカル状態を更新
       };
       reader.readAsDataURL(file);
     }
   };
-
+  useEffect(() => {
+    const savedProfileImage = localStorage.getItem("profileImage");
+    if (savedProfileImage) {
+      setProfileImage(savedProfileImage);
+    } else {
+      fetch("/profileImages.json")
+        .then((response) => response.json())
+        .then((data) => {
+          setDefaultImages(data.defaultImages);
+          setProfileImage(data.defaultImages[0]);
+        })
+        .catch((error) => {
+          console.error("Error loading profile images:", error);
+        });
+    }
+  }, [profileImage]);
+  
+  useEffect(() => {
+    if (isModalOpen) {
+      setNewProfileImage(profileImage); // モーダルが開いたときに現在の画像を設定
+    }
+  }, [isModalOpen, profileImage]);
+  
   return (
     <>
       <div className="prof-head">
@@ -112,7 +142,11 @@ function Profile({ userId }) {
         </button>
       </div>
       <div className="profileWrap">
-          <img src={profileImage} alt="profile" className="profile-image" />
+      <img 
+        src={profileImage || defaultImages[0]} 
+        alt="profile" 
+        className="profile-image" 
+      />
         <h2>
           {userName}
         </h2>
@@ -141,22 +175,22 @@ function Profile({ userId }) {
             <div className="image-select">
               <h3>Select Profile Image</h3>
               <div className="image-options">
-                {defaultImages.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`Profile ${index + 1}`}
-                    onClick={() => setNewProfileImage(image)}
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      borderRadius: "50%",
-                      margin: "5px",
-                      cursor: "pointer",
-                      border: newProfileImage === image ? "3px solid #98d639" : "none",
-                    }}
-                  />
-                ))}
+              {defaultImages.map((image, index) => (
+  <img
+    key={index}
+    src={image}
+    alt={`Profile ${index + 1}`}
+    onClick={() => setNewProfileImage(image)}
+    style={{
+      width: "60px",
+      height: "60px",
+      borderRadius: "50%",
+      margin: "5px",
+      cursor: "pointer",
+      border: newProfileImage === image ? "3px solid #98d639" : "none", // 選択状態のボーダー
+    }}
+  />
+))}
 
               <div>
                 <label for="file-up" className="up-label">+</label>
