@@ -7,6 +7,7 @@ import Nopage from "./pages/Nopage";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import PlayHome from "./pages/playlist/PlayHome";
+import Profile from "./pages/Profile";
 import "./css/main.css";
 
 function App() {
@@ -14,14 +15,16 @@ function App() {
 
   const handleLogin = (userId) => {
     setLoggedInUserId(userId);
+    localStorage.setItem("loggedInUserId", userId); // store login
   };
 
   const handleLogout = () => {
     setLoggedInUserId(null);
+    localStorage.removeItem("loggedInUserId"); // delete
   };
 
   return (
-    <div style={{ backgroundColor: "#fff"}}>
+    <div style={{ backgroundColor: "#fff"}} className="wrap">
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Master isLogin={loggedInUserId}/>}>
@@ -29,6 +32,7 @@ function App() {
           <>
             <Route index element={<Home />} />
             <Route path="play/*" element={<PlayHome />} />
+            <Route path="/profile" element={<Profile userId={loggedInUserId}/>} />
             <Route path="logout" element={<Logout onLogout={handleLogout}/>} /> 
           </>
             : 

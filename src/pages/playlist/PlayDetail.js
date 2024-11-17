@@ -4,6 +4,14 @@ import Audio from "../../components/Audio";
 import "../../css/playList.css";
 import HttpService from "../../services/HttpService";
 
+// for recent played music //
+function addRecentPlay(music) {
+  const recentPlays = JSON.parse(localStorage.getItem("recentPlays")) || [];
+  const updatedPlays = [music, ...recentPlays.filter((item) => item.id !== music.id)];
+  localStorage.setItem("recentPlays", JSON.stringify(updatedPlays.slice(0, 20)));//store recent played music up to 20
+}
+//////
+
 export default function PlayDetail() {
   const { id } = useParams(); // bring id from Param
   const [music, setMusic] = useState(null);
@@ -11,7 +19,7 @@ export default function PlayDetail() {
   useEffect(() => {
     HttpService.get("music.json").then(
       (res) => {
-        const foundMusic = res.data.find(({ id }) => id === Number(id));
+        const foundMusic = res.data.find((item) => item.id === Number(id));
 
         setMusic(foundMusic);
       },
@@ -20,7 +28,13 @@ export default function PlayDetail() {
       }
     );
   }, [id]);
-
+//to show recent play in profile page//
+  useEffect(() => {
+    if (music) {
+      addRecentPlay(music);
+    }
+  }, [music]);
+///////////////////////
   if (!music) {
     return <div>Loading...</div>;
   }

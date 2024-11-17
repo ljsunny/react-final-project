@@ -1,6 +1,7 @@
 import "../../css/playList.css"
 import { useNavigate } from "react-router-dom";
-export default function PlayList({musics}) {
+//a parameter of "isProfile = false" is for profile page
+export default function PlayList({musics, isProfile = false}) {
   console.log(musics)
   const navigate = useNavigate();
   function formatTime(seconds) {
@@ -12,7 +13,8 @@ export default function PlayList({musics}) {
     <>
     <div className="row justify-content-center align-items-start g-2 mt-3 w-full">
       <div className="col-11">
-        <h1>PlayList</h1>
+        {/* display h1 only for Playlist page */}
+      {!isProfile && <h1>PlayList</h1>}
         <table>
           <thead>
             <tr>
