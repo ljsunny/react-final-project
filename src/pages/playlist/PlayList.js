@@ -1,6 +1,8 @@
 import "../../css/playList.css"
 import { useNavigate } from "react-router-dom";
-export default function PlayList({musics}) {
+//a parameter of "isProfile = false" is for profile page
+export default function PlayList({musics, isProfile = false}) {
+  console.log(musics)
   const navigate = useNavigate();
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
@@ -18,22 +20,11 @@ export default function PlayList({musics}) {
   return (
     <>
     <div className="row justify-content-center align-items-start g-2 mt-3 w-full">
-      <div style={{display:'flex',width:'100%', overflow:'hidden', marginLeft: '50px', }}>
-          {
-            musics.map((music)=>{
-              return (
-              <div>
-                <img style={{width:'146px',height:'185px', borderRadius:'30px', marginRight:'14px'}} src={music.img}/>
-                <p>{truncateString(music.name, 15)}</p>
-              </div>
-              )
-            })
-          }
-      </div>
-      <div className="col-10">
-        <h1>PlayList</h1>
-        <table style={{marginTop:'20px', width:'100%'}}>
-          {/* <thead>
+      <div className="col-11">
+        {/* display h1 only for Playlist page */}
+      {!isProfile && <h1>PlayList</h1>}
+        <table>
+          <thead>
             <tr>
               <th></th>
               <th>title</th>

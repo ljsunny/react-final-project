@@ -58,7 +58,7 @@ const Register = () => {
 
   return (
     <div className="regForm">
-      <div className="d-flex mx-auto mt-5" style={{ justifyContent: 'center', alignItems: 'center'}}>
+      <div className="d-flex mx-auto mt-5 d-lg-none" style={{ justifyContent: 'center', alignItems: 'center'}}>
       <img src="/santa.png"/>
       <h1 className="head-t">Christmas Playlist</h1>
       </div>
