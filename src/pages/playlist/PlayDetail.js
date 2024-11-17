@@ -11,8 +11,8 @@ export default function PlayDetail() {
   useEffect(() => {
     HttpService.get("music.json").then(
       (res) => {
-        const foundMusic = res.data.find(({ id }) => id === Number(id));
-
+        const foundMusic = res.data.find((music) => music.id === Number(id));
+        console.log(foundMusic);
         setMusic(foundMusic);
       },
       (error) => {
@@ -28,18 +28,20 @@ export default function PlayDetail() {
   return (
     <div
       className="d-flex flex-column"
-      style={{ width: "100%", justifyContent: "center", alignItems: "center" }}
+      style={{height:'100vh', width: "100%", justifyContent: "center", alignItems: "center",backgroundColor:'#FAFAFA' }}
     >
       <div
         style={{
           width: "100%",
           display: "flex",
           justifyContent: "space-between",
+          alignItems:"center",
           position: "fixed",
           top: 0,
           padding: "36px",
           fontWeight: 700,
           backgroundColor: "#fafafa",
+          zIndex:1
         }}
       >
         <Link
@@ -61,14 +63,16 @@ export default function PlayDetail() {
         <span></span>
       </div>
       <div style={{width:'80%'}}>
-        <div style={{ margin: "32px" }}>
+        <div style={{ marginBottom: "32px" }}>
           <img
             src={music.img}
-            style={{width:'100%',borderRadius: "30px" }}
-          />
+            style={{width:'100%', height:'370px', borderRadius: "30px", objectFit:'cover'}}
+          /> 
         </div>
-        <h1>{music.name}</h1>
-        <p>{music.artist}</p>
+        <div style={{marginBottom:'32px'}}>
+          <h1>{music.name}</h1>
+          <p>{music.artist}</p>
+        </div>
           <Audio src={music.src} duration={music.duration}/>
       </div>
     </div>

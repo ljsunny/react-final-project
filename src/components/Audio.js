@@ -7,7 +7,7 @@ export default function Audio({src, duration}){
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // localStorage에서 포인트를 불러오기
+    // load point data from localStorage
     const savedPoints = localStorage.getItem('points');
     if (savedPoints) {
       setPoints(parseInt(savedPoints, 10));
@@ -46,7 +46,7 @@ export default function Audio({src, duration}){
   };
 
   const handleSongEnd = () => {
-    // 노래가 끝났을 때 포인트 10점 추가 (여기서 포인트 증가 로직을 수정할 수 있음)
+    // When music end, user get 
     const newPoints = points + 2;
     setPoints(newPoints);
     if(!localStorage.getItem)
@@ -73,15 +73,17 @@ export default function Audio({src, duration}){
           className="audio-progress"
         />
       </div>
-      <div>
+      <div style={{marginBottom:'28px',display:'flex',justifyContent:'space-between',width:'100%'}}>
+        <p>{formatTime(progress)}</p>
         <p>{formatTime(duration)}</p>
       </div>
       {/* <div className="points-display">
-        <p>Points: {points}</p>
-      </div> */}
-      <button onClick={handlePlayPause}>
-          {isPlaying ? 'Pause' : 'Play'}
-        </button>
+            <p>Points: {points}</p>
+          </div> 
+      */}
+        <a onClick={handlePlayPause} style={{marginBottom:'28px'}}>
+          {isPlaying ? <img src="/svg/StopBtn.svg"/> : <img src="/svg/StopBtn.svg"/>}
+        </a>
       <audio ref={audioRef} src={src} />
     </div>
   );
