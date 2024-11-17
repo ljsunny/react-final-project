@@ -33,7 +33,7 @@ body {
 }
 
 .nav-wrap {
-  position: relative;
+  position: fixed;
   z-index: 1;
   display: flex;
   width:100%;
@@ -42,7 +42,6 @@ body {
   margin-bottom: 0;
   padding-bottom: 0;
   width: 100%;
-  min-height: 50px;
   position: relative;
   border-bottom: none;
   z-index: 101;
@@ -93,7 +92,9 @@ body {
   background-color: #f2f2f2;
   z-index: 2;
 }
-
+.content-area {
+  padding-top: 50px;
+}
 /*login & register*/
 .loginForm,
 .regForm {
@@ -280,6 +281,7 @@ input[type="file"] {
 /* DESKTOP（992px以上） */
 @media (min-width: 992px) {
   .nav-wrap {
+    position: relative;
     width: 338px;
   }
   .navbar-toggler {
@@ -334,6 +336,7 @@ input[type="file"] {
     display: flex;
     flex-direction: column;
     width: calc(100vw - 338px);
+    padding-top: 0;
   }
 
   .modal-content {
