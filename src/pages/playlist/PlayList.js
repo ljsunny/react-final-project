@@ -28,10 +28,9 @@ export default function PlayList({musics, isProfile = false}) {
             <tr>
               <th></th>
               <th>title</th>
-              <th>artist</th>
               <th>duration</th>
             </tr>
-          </thead> */}
+          </thead>
           <tbody>
             {musics.map((music) => {
               return (
