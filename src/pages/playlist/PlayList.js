@@ -19,18 +19,11 @@ export default function PlayList({musics, isProfile = false}) {
   
   return (
     <>
-    <div className="row justify-content-center align-items-start g-2 mt-3 w-full">
+    <div id="playList" className="row justify-content-center align-items-start g-2 mt-3 w-full">
       <div className="col-11">
         {/* display h1 only for Playlist page */}
       {!isProfile && <h1>PlayList</h1>}
         <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>title</th>
-              <th>duration</th>
-            </tr>
-          </thead>
           <tbody>
             {musics.map((music) => {
               return (

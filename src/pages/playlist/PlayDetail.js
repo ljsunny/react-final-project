@@ -40,54 +40,29 @@ export default function PlayDetail() {
   }
 
   return (
-    <div
-      className="d-flex flex-column"
-      style={{height:'100vh', width: "100%", justifyContent: "center", alignItems: "center",backgroundColor:'#FAFAFA' }}
-    >
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems:"center",
-          position: "fixed",
-          top: 0,
-          padding: "36px",
-          fontWeight: 700,
-          backgroundColor: "#fafafa",
-          zIndex:1
-        }}
-      >
+    <div id="playDetail">
+      <div className="detail-nav">
         <Link
           to="/play"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "50%",
-            backgroundColor: "#e6e6e6",
-            padding: "10px",
-            width: "32px",
-            height: "32px",
-          }}
+          className="link"
         >
           <img src="/svg/leftArrow.svg" />
         </Link>
         <span>Now Playing</span>
         <span></span>
       </div>
-      <div style={{width:'80%'}}>
-        <div style={{ marginBottom: "32px" }}>
+      <div className="main">
+        <div>
           <img
             src={music.img}
             style={{width:'100%', height:'370px', borderRadius: "30px", objectFit:'cover'}}
           /> 
         </div>
-        <div style={{marginBottom:'32px'}}>
+        <div>
           <h1>{music.name}</h1>
           <p>{music.artist}</p>
         </div>
-          <Audio src={music.src} duration={music.duration}/>
+        <Audio src={music.src} duration={music.duration}/>
       </div>
     </div>
   );

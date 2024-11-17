@@ -9,34 +9,87 @@
   font-family: "Poppins", sans-serif;
   font-size: 16px;
 }
-h1 {
-  font-size: 20px;
-  font-weight:700;
-  margin-bottom:30px;
-  margin:0;
-}
 p{
   margin:0
 }
-.play-icon {
+
+#playList{
+  padding:20px 0;
+  table {
+    width: 100%;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight:700;
+    margin:0;
+    margin-bottom:20px;
+  }
+
+  .play-icon {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:37px;
+    height:37px;
+    border-radius: 50%;
+    background-color:#e6e6e6;
+    padding:10px;
+    margin-right:23px;
+  }
+  td{
+    cursor: pointer;
+    padding: 8px;
+  }
+}
+/* Detail page */
+#playDetail {
   display:flex;
-  justify-content:center;
+  flex-direction:column;
   align-items:center;
-  width:37px;
-  height:37px;
-  border-radius: 50%;
-  background-color:#e6e6e6;
-  padding:10px;
-  margin-right:23px;
+  width: 100%;
+  min-height: 100vh;
+  background-color:#FAFAFA;
+  
+  h1 {
+    font-size: 20px;
+    font-weight:700;
+    margin:0;
+    margin-bottom:20px;
+  }
+  .detail-nav {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    top:0;
+    padding:36px;
+    font-weight:700;
+    background-color:#fafafa;
+    width:100%;
+
+    .link {
+      display:flex;
+      justify-content:center;
+      align-items: center;
+      border-radius: 50%;
+      background-color:#e6e6e6;
+      padding: 10px;
+      width: 32px;
+      height: 32ppx;
+    }
+  }
+
+  .main {
+    display:flex;
+    flex-direction:column;
+    width: 80%;
+    gap:32px;
+  }
 }
-td{
-  cursor: pointer;
-  pdding: 5px;
-}
-/* 스타일링 기본 audio 컨트롤 */
+
+/* style Audio control*/
 audio {
   width: 100%;
-  height: 40px; /* 플레이어 높이 조정 */
+  height: 40px; /* adjust player height */
 }
 
 .audio-player {
@@ -69,44 +122,44 @@ button:hover {
   width: 100%;
   background-color:#434343;
 }
-/* 웹킷 기반 브라우저 (Chrome, Safari) */
+/* (Chrome, Safari) */
 input[type="range"] {
-  -webkit-appearance: none; /* 기본 슬라이더 스타일을 제거 */
+  -webkit-appearance: none; /* remove default slider*/
   appearance: none;
-  width: 100%; /* 슬라이더 길이 */
-  height: 8px; /* 슬라이더의 높이 */
-  background: #434343; /* 진행 바 배경색 */
+  width: 100%; /* slider width */
+  height: 8px; /* slider height */
+  background: #434343; /* background color of progress bar */
   border-radius: 5px;
-  outline: none; /* 포커스된 상태에서의 외곽선 제거 */
+  outline: none; /* remove outline */
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
   height: 8px;
-  background: #434343; /* 진행 바 배경 색상 */
+  background: #434343; /* background color of progress bar */
   border-radius: 5px;
 }
 
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* 기본 thumb 스타일 제거 */
+  -webkit-appearance: none; /* remove default thumbnail style */
   appearance: none;
-  width: 20px; /* thumb의 크기 */
+  width: 20px; /* thumb's size */
   height: 20px;
-  background: #5c5c5c; /* thumb 색상 */
+  background: #5c5c5c; /* thumb color */
   border-radius: 50%;
   border: none;
-  cursor: pointer; /* 드래그 시 커서 */
-  margin-top: -6px; /* thumb 위치 조정 */
+  cursor: pointer; /* cursor */
+  margin-top: -6px; /* thumb location */
 }
 
-/* 모질라 기반 브라우저 (Firefox) */
+/* (Firefox) */
 input[type="range"]::-moz-range-track {
-  background: #434343; /* 진행 바 배경 색상 */
+  background: #434343;  /* background color of progress bar */
   height: 8px;
   border-radius: 5px;
 }
 
 input[type="range"]::-moz-range-thumb {
-  background: #5c5c5c; /* thumb 색상 */
+  background: #5c5c5c; /* thumb color */
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -114,9 +167,9 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
-/* Internet Explorer 및 Edge */
+/* Internet Explorer and Edge */
 input[type="range"]::-ms-track {
-  background: #434343; /* 진행 바 배경 색상 */
+  background: #434343;  /* background color of progress bar */
   height: 8px;
   border-radius: 5px;
   border-color: transparent;
@@ -124,13 +177,13 @@ input[type="range"]::-ms-track {
 }
 
 input[type="range"]::-ms-thumb {
-  background: #5c5c5c; /* thumb 색상 */
+  background: #5c5c5c; /* thumb color */
   border-radius: 50%;
   width: 20px;
   height: 20px;
   border: none;
   cursor: pointer;
-  margin-top: 0px; /* thumb 위치 조정 */
+  margin-top: 0px; /* thumb location */
 }
 
 
