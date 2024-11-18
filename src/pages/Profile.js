@@ -73,13 +73,6 @@ function Profile({ userId }) {
   
     // ローカルストレージを更新
     localStorage.setItem("users", JSON.stringify(updatedUsers));
-  
-    const loggedInUser = { 
-      id: userId, 
-      name: newUserName, 
-      profileImage: newProfileImage || profileImage 
-    };
-    localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
     localStorage.setItem("profileImage", newProfileImage || profileImage);
   
     // 現在の状態を更新
