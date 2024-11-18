@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 
 export default function Master({isLogin}){
     return(
-        <div className="d-flex flex-column flex-lg-row" style={{backgroundColor:'#f2f2f2'}}>
+        <div className="d-flex flex-column flex-lg-row">
             <Navbar isLogin={isLogin}/>
             <div className="content-area">
             <Outlet/> 

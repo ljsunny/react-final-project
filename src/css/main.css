@@ -9,7 +9,7 @@
 }
 body {
   min-height: 100vh;
-  background-color: #f2f2f2;
+  background-color: #fce0e0;
 }
 
 /*navigation*/
@@ -89,7 +89,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
   z-index: 2;
 }
 .content-area {
@@ -98,7 +98,6 @@ body {
 /*login & register*/
 .loginForm,
 .regForm {
-  background-color: #f2f2f2;
   width: 100%;
   margin: 0;
   padding: 0;
