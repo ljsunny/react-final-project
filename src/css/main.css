@@ -36,7 +36,7 @@ body {
   position: fixed;
   z-index: 1;
   display: flex;
-  width:100%;
+  width: 100%;
 }
 .navbar {
   margin-bottom: 0;
@@ -318,7 +318,7 @@ input[type="file"] {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    min-height:100vh;
+    min-height: 100vh;
     height: 100%;
   }
   .loginForm {
@@ -331,12 +331,17 @@ input[type="file"] {
     justify-content: center;
     align-items: center;
   }
+
+  .prof-t {
+    margin-top: 10px;
+  }
   .content-area {
     flex: 1;
     display: flex;
     flex-direction: column;
     width: calc(100vw - 338px);
     padding-top: 0;
+    position: relative;
   }
 
   .modal-content {
@@ -355,6 +360,7 @@ input[type="file"] {
     gap: 20px;
     align-items: center;
   }
+
   .image-select {
     display: flex;
     flex-wrap: nowrap;
@@ -410,7 +416,8 @@ input[type="file"] {
   }
 
   .edit-profile {
-    top: -30px;
+    top: 0px;
     right: 20px;
+    margin: 10px;
   }
 }
