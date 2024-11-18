@@ -8,6 +8,7 @@ import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import PlayHome from "./pages/playlist/PlayHome";
 import Profile from "./pages/Profile";
+import SnowEffect from "./components/SnowEffect";
 import "./css/main.css";
 
 function App() {
@@ -24,27 +25,28 @@ function App() {
   };
 
   return (
-    <div style={{ backgroundColor: "#fff"}} className="wrap">
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Master isLogin={loggedInUserId}/>}>
-          {loggedInUserId ? 
-          <>
-            <Route index element={<Home />} />
-            <Route path="play/*" element={<PlayHome />} />
-            <Route path="/profile" element={<Profile userId={loggedInUserId}/>} />
-            <Route path="logout" element={<Logout onLogout={handleLogout}/>} /> 
-          </>
-            : 
+    <div className="wrap">
+      <SnowEffect/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Master isLogin={loggedInUserId}/>}>
+            {loggedInUserId ? 
             <>
-              <Route path="login" element={<Login onLogin={handleLogin} />} />
-              <Route path="register" element={<Register/>} /> 
+              <Route index element={<Home />} />
+              <Route path="play/*" element={<PlayHome />} />
+              <Route path="/profile" element={<Profile userId={loggedInUserId}/>} />
+              <Route path="logout" element={<Logout onLogout={handleLogout}/>} /> 
             </>
-          }
-          <Route path="*" element={<Nopage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+              : 
+              <>
+                <Route path="login" element={<Login onLogin={handleLogin} />} />
+                <Route path="register" element={<Register/>} /> 
+              </>
+            }
+            <Route path="*" element={<Nopage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

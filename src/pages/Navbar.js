@@ -26,7 +26,7 @@ const currentDisplay = (path) => location.pathname === path;
 
 return (
   <div className="nav-wrap">
-    <nav style={{ backgroundColor: isProfilePage ? "#d83f3f" : "#f2f2f2" }} className="navbar navbar-expand-lg nav-icon">
+    <nav style={{ backgroundColor: isProfilePage ? "#d83f3f" : undefined }} className="navbar navbar-expand-lg nav-icon">
       <div className="container-fluid">
         <button
           className="navbar-toggler"
