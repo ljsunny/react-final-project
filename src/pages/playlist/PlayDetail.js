@@ -17,16 +17,15 @@ export default function PlayDetail() {
   const [music, setMusic] = useState(null);
 
   useEffect(() => {
-    HttpService.get("music.json").then(
-      (res) => {
-        const foundMusic = res.data.find((item) => item.id === Number(id));
-
-        setMusic(foundMusic);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    useEffect(() => {
+      fetch("music.json")
+        .then((response) => response.json())
+        .then((data) =>{
+          const foundMusic = res.data.find((item) => item.id === Number(id));
+          setMusic(foundMusic)
+        } )
+        .catch((error) => console.error("Error ", error));
+    }, []);
   }, [id]);
 //to show recent play in profile page//
   useEffect(() => {
