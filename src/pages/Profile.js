@@ -66,20 +66,20 @@ function Profile({ userId }) {
         ? { 
             ...user, 
             name: newUserName, 
-            profileImage: newProfileImage || profileImage // 現在の画像を維持
+            profileImage: newProfileImage || profileImage // to maintain current image
           }
         : user
     );
   
-    // ローカルストレージを更新
+    // update localstrage
     localStorage.setItem("users", JSON.stringify(updatedUsers));
     localStorage.setItem("profileImage", newProfileImage || profileImage);
   
-    // 現在の状態を更新
+    // update
     setUserName(newUserName);
     setProfileImage(newProfileImage || profileImage);
   
-    // モーダルを閉じる
+    // close modal
     setIsModalOpen(false);
   
     console.log("Saved profile image:", newProfileImage || profileImage);
@@ -98,7 +98,7 @@ function Profile({ userId }) {
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64Image = reader.result;
-        setNewProfileImage(base64Image); // ローカル状態を更新
+        setNewProfileImage(base64Image); // update
       };
       reader.readAsDataURL(file);
     }
@@ -122,7 +122,7 @@ function Profile({ userId }) {
   
   useEffect(() => {
     if (isModalOpen) {
-      setNewProfileImage(profileImage); // モーダルが開いたときに現在の画像を設定
+      setNewProfileImage(profileImage); // once modal is opened, set the image
     }
   }, [isModalOpen, profileImage]);
   
@@ -152,7 +152,12 @@ function Profile({ userId }) {
       )}
 
       {isModalOpen && (
-        <div className="modal">
+        <div className="modal"
+        onClick={(e)=>{
+          if(e.target.className==="modal"){
+            setIsModalOpen(false);//when click outside of modal, close modal
+          }
+        }}>
           <div className="modal-content">
             <div className="edit-name-wrap">
             <h3>Edit User Name</h3>
@@ -180,7 +185,7 @@ function Profile({ userId }) {
       borderRadius: "50%",
       margin: "5px",
       cursor: "pointer",
-      border: newProfileImage === image ? "3px solid #98d639" : "none", // 選択状態のボーダー
+      border: newProfileImage === image ? "3px solid #98d639" : "none", // focusing line
     }}
   />
 ))}
