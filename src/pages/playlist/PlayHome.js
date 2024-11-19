@@ -7,12 +7,10 @@ import HttpService from "../../services/HttpService";
 export default function PlayHome() {
   const [musics, setMusics] = useState([]);
   const loadUserData = () => {
-    useEffect(() => {
       fetch("music.json")
         .then((response) => response.json())
         .then((data) => setMusics(data))
         .catch((error) => console.error("Error ", error));
-    }, []);
   };
 
   useEffect(() => {
