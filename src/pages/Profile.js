@@ -152,7 +152,12 @@ function Profile({ userId }) {
       )}
 
       {isModalOpen && (
-        <div className="modal">
+        <div className="modal"
+        onClick={(e)=>{
+          if(e.target.className==="modal"){
+            setIsModalOpen(false);//when click outside of modal, close modal
+          }
+        }}>
           <div className="modal-content">
             <div className="edit-name-wrap">
             <h3>Edit User Name</h3>

@@ -234,6 +234,7 @@ body {
 }
 
 .modal-buttons button {
+  width: 90px;
   margin: 5px;
   padding: 10px;
   border: none;
@@ -274,6 +275,13 @@ input[type="file"] {
 .edit-name:focus {
   border: 2px solid rgba(65, 65, 65, 0.5);
   outline: none;
+}
+
+.camera {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 /***********************/
@@ -331,6 +339,13 @@ input[type="file"] {
     align-items: center;
   }
 
+  .regForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
   .prof-t {
     margin-top: 10px;
   }
