@@ -1,7 +1,7 @@
 import http from "../http-common";
 
 class HttpService{
-    get(fileName,path=`${process.env.PUBLIC_URL}`){
+    get(fileName,path=`react-final-project`){
         return http.get(`${path}/${fileName}`);
     }
 }
