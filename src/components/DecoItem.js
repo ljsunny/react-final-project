@@ -27,7 +27,7 @@ export default function DecoItem({ buyItem, switchToMyItems,points }) {
         <ul className="DefaultItem">
           {decoration.map((item) => (
             <li key={item.id} onClick={() => buyClick(item)}>
-              <img src={item.img} alt={item.deco_name} />
+              <img src={`${process.env.PUBLIC_URL}/${item.img}`} alt={item.deco_name} />
               <p>Points: <span>{item.points}</span></p>
             </li>
           ))}
