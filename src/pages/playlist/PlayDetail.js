@@ -46,7 +46,7 @@ export default function PlayDetail() {
           to="/play/"
           className="link"
         >
-          <img src="/svg/leftArrow.svg" />
+          <img src={`${process.env.PUBLIC_URL}/svg/leftArrow.svg`} />
         </Link>
         <span>Now Playing</span>
         <span></span>

@@ -32,7 +32,7 @@ export default function PlayList({musics, isProfile = false}) {
                 }}>
                   <td style={{width:'50px', padding: '8px 0'}}>
                     <div className="play-icon">
-                      <img src="/svg/playBtn.svg" />
+                      <img src={`${process.env.PUBLIC_URL}/svg/playBtn.svg`} />
                     </div>
                   </td>
                   <td ><p style={{fontWeight:700}}>{truncateString(music.name, 20)}</p><p>{music.artist}</p></td>

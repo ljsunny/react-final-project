@@ -43,7 +43,7 @@ return (
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mt-2 mt-lg-0">
           <li className="nav-item d-none d-lg-block nav-t">
-            <img src="/santa.png" alt="logo"/>
+            <img src={`${process.env.PUBLIC_URL}/santa.png`} alt="logo"/>
             Christmas Playlist</li>
             {/* check if logged in or not */}
             {isLogin ? (
