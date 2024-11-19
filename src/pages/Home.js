@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TreeArea from "../components/TreeArea";
 import DecoItem from "../components/DecoItem";
 import MyItemList from "../components/MyItem";
+import TakePic from "../components/TakePic";//added
 
 export default function Home() {
   const user = JSON.parse(localStorage.getItem("users"));
@@ -98,9 +99,10 @@ export default function Home() {
     setRemovedItems(prevItems => prevItems.filter(myItem => myItem.id !== item.id));
   };
 
-  
   return (
     <div className="w-100">
+      {/* added screenshot function*/}
+      <TakePic targetClass=".tree-area" fileName="merrychristmas.png" />
       <h1 className="treeTitle"><span>{userName}</span>'s Christmas Tree</h1>
       <div className="d-flex flex-column flex-lg-row">
       <TreeArea decoItems={decoItems} removeItem={removeItem} />

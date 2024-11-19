@@ -56,7 +56,9 @@ export default function PlayDetail() {
           /> 
         </div>
         <div>
+          <div>
           <h1>{music.name}</h1>
+          </div>
           <p>{music.artist}</p>
         </div>
         <Audio src={`${process.env.PUBLIC_URL}/${music.src}`} duration={music.duration}/>

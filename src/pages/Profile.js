@@ -62,29 +62,33 @@ function Profile({ userId }) {
     }
   }, [userId]);
 
-const handleSaveClick = () => {
-  const users = JSON.parse(localStorage.getItem("users")) || [];
-  const updatedUsers = users.map((user) =>
-    String(user.id) === String(userId)
-      ? {
-          ...user,
-          name: newUserName,
-          profileImage: newProfileImage || profileImage,
-        }
-      : user
-  );
-
-  localStorage.setItem("users", JSON.stringify(updatedUsers));
-  localStorage.setItem("profileImage", newProfileImage || profileImage);
-
-  setUserName(newUserName);
-  setProfileImage(newProfileImage || profileImage);
-
-  setIsModalOpen(false);
-
-  console.log("Saved profile image:", newProfileImage || profileImage);
-};
-
+  const handleSaveClick = () => {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const updatedUsers = users.map(user =>
+      String(user.id) === String(userId)
+        ? { 
+            ...user, 
+            name: newUserName, 
+            profileImage: newProfileImage || profileImage // to maintain current image
+          }
+        : user
+    );
+  
+    // update localstrage
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    localStorage.setItem("profileImage", newProfileImage || profileImage);
+  
+    // update
+    setUserName(newUserName);
+    setProfileImage(newProfileImage || profileImage);
+  
+    // close modal
+    setIsModalOpen(false);
+  
+    console.log("Saved profile image:", newProfileImage || profileImage);
+  };
+  
+  
   const handleCancelClick = () => {
     setNewUserName(userName);
     setNewProfileImage(profileImage);
@@ -95,8 +99,9 @@ const handleSaveClick = () => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (event) => {
-        setNewProfileImage(event.target.result); // base64 저장
+      reader.onloadend = () => {
+        const base64Image = reader.result;
+        setNewProfileImage(base64Image); // update
       };
       reader.readAsDataURL(file);
     }
@@ -120,7 +125,7 @@ const handleSaveClick = () => {
 
   useEffect(() => {
     if (isModalOpen) {
-      setNewProfileImage(profileImage); // モーダルが開いたときに現在の画像を設定
+      setNewProfileImage(profileImage); // once modal is opened, set the image
     }
   }, [isModalOpen, profileImage]);
 
@@ -155,7 +160,12 @@ const handleSaveClick = () => {
       )}
 
       {isModalOpen && (
-        <div className="modal">
+        <div className="modal"
+        onClick={(e)=>{
+          if(e.target.className==="modal"){
+            setIsModalOpen(false);//when click outside of modal, close modal
+          }
+        }}>
           <div className="modal-content">
             <div className="edit-name-wrap">
               <h3>Edit User Name</h3>
