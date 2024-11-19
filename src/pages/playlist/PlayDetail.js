@@ -54,7 +54,7 @@ export default function PlayDetail() {
       <div className="main">
         <div>
           <img
-            src={music.img}
+            src={`${process.env.PUBLIC_URL}/${music.img}`}
             style={{width:'100%', height:'370px', borderRadius: "30px", objectFit:'cover'}}
           /> 
         </div>
@@ -62,7 +62,7 @@ export default function PlayDetail() {
           <h1>{music.name}</h1>
           <p>{music.artist}</p>
         </div>
-        <Audio src={music.src} duration={music.duration}/>
+        <Audio src={`${process.env.PUBLIC_URL}/${music.src}`} duration={music.duration}/>
       </div>
     </div>
   );
