@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="wrap">
       <SnowEffect/>
-      <BrowserRouter basename="/react-final-project">>
+      <BrowserRouter basename="/react-final-project/">
         <Routes>
           <Route path="/" element={<Master isLogin={loggedInUserId}/>}>
             {loggedInUserId ? 
