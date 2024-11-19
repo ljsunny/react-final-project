@@ -5,7 +5,7 @@ export default function DecoItem({ buyItem, switchToMyItems,points }) {
   const [decoration, setDecoration] = useState([]);
 
   useEffect(() => {
-    fetch("decoration.json")
+    fetch(`${process.env.PUBLIC_URL}/decoration.json`)
       .then((response) => response.json())
       .then((data) => setDecoration(data))
       .catch((error) => console.error("Error ", error));
