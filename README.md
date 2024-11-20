@@ -1,7 +1,3 @@
-<img width="768" alt="Screenshot 2024-11-20 at 1 01 15 PM" src="https://github.com/user-attachments/assets/4b5df20b-4704-4ee3-a7e2-4f65a99a110b">Here's the `README.md` translated into English for your project:
-
----
-
 # Music Points Tree Project
 
 ### 🎵 A Project for Sign-Up, Login, Listening to Music, Earning Points, and Decorating a Tree to Share with Other Users
