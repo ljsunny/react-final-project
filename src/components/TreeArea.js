@@ -8,14 +8,14 @@ export default function TreeArea({ decoItems, removeItem }) {
   return (
     <div className="tree-area">
       <img
-        src="/svg/Main-Tree.svg"
+        src={`${process.env.PUBLIC_URL}/svg/Main-Tree.svg`}
         alt="Main Tree"
       />
       <div className="tree-grid">
         {Object.keys(decoItems).map((key) => (
           <div key={key} id={key} onClick={() => removeClick(key)}>
             {decoItems[key] && (
-              <img src={decoItems[key].img} alt={decoItems[key].deco_name} />
+              <img src={`${process.env.PUBLIC_URL}/${decoItems[key].img}`} alt={decoItems[key].deco_name} />
             )}
           </div>
         ))}

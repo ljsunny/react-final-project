@@ -246,6 +246,7 @@ body {
 }
 
 .modal-buttons button {
+  width: 90px;
   margin: 5px;
   padding: 10px;
   border: none;
@@ -288,6 +289,48 @@ input[type="file"] {
   outline: none;
 }
 
+.camera {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/*deco modal*/
+.modal-deco {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.modalContent-deco {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 15px;
+}
+
+.modal-msg {
+  margin: 10px;
+}
+.confirmButton {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #3b933c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  max-width: 300px;
+}
 /***********************/
 /* DESKTOP（992px以上） */
 @media (min-width: 992px) {
@@ -344,6 +387,13 @@ input[type="file"] {
     align-items: center;
   }
 
+  .regForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
   .prof-t {
     margin-top: 10px;
   }
@@ -431,5 +481,9 @@ input[type="file"] {
     top: 0px;
     right: 20px;
     margin: 10px;
+  }
+
+  .modal-msg {
+    font-size: 20px;
   }
 }

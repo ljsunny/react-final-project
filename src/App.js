@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Master from "./pages/Master";
 import Login from "./pages/Login";
@@ -10,9 +9,10 @@ import PlayHome from "./pages/playlist/PlayHome";
 import Profile from "./pages/Profile";
 import SnowEffect from "./components/SnowEffect";
 import "./css/main.css";
+import { useState } from "react";
 
 function App() {
-  const [loggedInUserId, setLoggedInUserId] = useState(localStorage.getItem('loggedInUserId'));
+  const [loggedInUserId, setLoggedInUserId] = useState(localStorage.getItem("loggedInUserId"));
 
   const handleLogin = (userId) => {
     setLoggedInUserId(userId);
@@ -26,27 +26,27 @@ function App() {
 
   return (
     <div className="wrap">
-      <SnowEffect/>
-      <BrowserRouter>
+      <SnowEffect />
+      <Router>
         <Routes>
-          <Route path="/" element={<Master isLogin={loggedInUserId}/>}>
-            {loggedInUserId ? 
-            <>
-              <Route index element={<Home />} />
-              <Route path="play/*" element={<PlayHome />} />
-              <Route path="/profile" element={<Profile userId={loggedInUserId}/>} />
-              <Route path="logout" element={<Logout onLogout={handleLogout}/>} /> 
-            </>
-              : 
+          <Route path="/" element={<Master isLogin={loggedInUserId} />}>
+            {loggedInUserId ? (
+              <>
+                <Route index element={<Home />} />
+                <Route path="play/*" element={<PlayHome />} />
+                <Route path="profile" element={<Profile userId={loggedInUserId} />} />
+                <Route path="logout" element={<Logout onLogout={handleLogout} />} />
+              </>
+            ) : (
               <>
                 <Route path="login" element={<Login onLogin={handleLogin} />} />
-                <Route path="register" element={<Register/>} /> 
+                <Route path="register" element={<Register />} />
               </>
-            }
+            )}
             <Route path="*" element={<Nopage />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

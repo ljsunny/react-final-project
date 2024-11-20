@@ -1,8 +1,8 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Audio from "../../components/Audio";
 import "../../css/playList.css";
-import HttpService from "../../services/HttpService";
 
 // for recent played music //
 function addRecentPlay(music) {
@@ -17,16 +17,16 @@ export default function PlayDetail() {
   const [music, setMusic] = useState(null);
 
   useEffect(() => {
-    HttpService.get("music.json").then(
-      (res) => {
-        const foundMusic = res.data.find((item) => item.id === Number(id));
-
+    axios.get(`${process.env.PUBLIC_URL}/music.json`)
+      .then((response) => {
+        const data = response.data; 
+        const foundMusic = data.find((item) => item.id === Number(id));
         setMusic(foundMusic);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+      })
+      .catch((error) => {
+        console.error("Error ", error); 
+      });
+    
   }, [id]);
 //to show recent play in profile page//
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function PlayDetail() {
           to="/play/"
           className="link"
         >
-          <img src="/svg/leftArrow.svg" />
+          <img src={`${process.env.PUBLIC_URL}/svg/leftArrow.svg`} />
         </Link>
         <span>Now Playing</span>
         <span></span>
@@ -54,15 +54,17 @@ export default function PlayDetail() {
       <div className="main">
         <div>
           <img
-            src={music.img}
+            src={`${process.env.PUBLIC_URL}/${music.img}`}
             style={{width:'100%', height:'370px', borderRadius: "30px", objectFit:'cover'}}
           /> 
         </div>
         <div>
+          <div>
           <h1>{music.name}</h1>
+          </div>
           <p>{music.artist}</p>
         </div>
-        <Audio src={music.src} duration={music.duration}/>
+        <Audio src={`${process.env.PUBLIC_URL}/${music.src}`} duration={music.duration}/>
       </div>
     </div>
   );
