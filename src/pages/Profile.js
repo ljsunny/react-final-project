@@ -12,18 +12,18 @@ function Profile({ userId }) {
 
   // check recently played music and profile
   useEffect(() => {
-    const storedRecentPlays = JSON.parse(localStorage.getItem("recentPlays")) || [];
+    const storedRecentPlays =
+      JSON.parse(localStorage.getItem("recentPlays")) || [];
     setRecentPlays(storedRecentPlays);
 
-    fetch("/profileImages.json")
+    fetch(`${process.env.PUBLIC_URL}/profileImages.json`)
       .then((response) => response.json())
       .then((data) => {
-        setDefaultImages(data.defaultImages);
-        const savedProfileImage = localStorage.getItem("profileImage");
-        if (savedProfileImage) {
-          setProfileImage(savedProfileImage);
+        if (data?.defaultImages?.length > 0) {
+          setDefaultImages(data.defaultImages);
+          setProfileImage(data.defaultImages[0]);
         } else {
-          setProfileImage(data.defaultImages[0]); // Set default if none saved
+          console.warn("No default images found in profileImages.json");
         }
       })
       .catch((error) => {
@@ -36,10 +36,13 @@ function Profile({ userId }) {
     if (userId) {
       const users = JSON.parse(localStorage.getItem("users"));
       if (users && Array.isArray(users)) {
-        const loggedInUser = users.find(user => String(user.id) === String(userId));
+        const loggedInUser = users.find(
+          (user) => String(user.id) === String(userId)
+        );
         if (loggedInUser) {
           setUserName(loggedInUser.name || "Default User");
-          const savedProfileImage = loggedInUser.profileImage || "/default-profile.png";
+          const savedProfileImage =
+            loggedInUser.profileImage || `${process.env.PUBLIC_URL}/ProfileImgs/santa-user.webp`;
           setProfileImage(savedProfileImage);
           setNewUserName(loggedInUser.name || "Default User");
           setNewProfileImage(savedProfileImage);
@@ -57,7 +60,7 @@ function Profile({ userId }) {
         setProfileImage(storedProfileImage);
       }
     }
-  }, [userId,]);
+  }, [userId]);
 
   const handleSaveClick = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -108,7 +111,7 @@ function Profile({ userId }) {
     if (savedProfileImage) {
       setProfileImage(savedProfileImage);
     } else {
-      fetch("/profileImages.json")
+      fetch(`${process.env.PUBLIC_URL}/profileImages.json`)
         .then((response) => response.json())
         .then((data) => {
           setDefaultImages(data.defaultImages);
@@ -119,13 +122,13 @@ function Profile({ userId }) {
         });
     }
   }, [profileImage]);
-  
+
   useEffect(() => {
     if (isModalOpen) {
       setNewProfileImage(profileImage); // once modal is opened, set the image
     }
   }, [isModalOpen, profileImage]);
-  
+
   return (
     <>
       <div className="prof-head">
@@ -135,20 +138,25 @@ function Profile({ userId }) {
         </button>
       </div>
       <div className="profileWrap">
-      <img 
-        src={profileImage || defaultImages[0]} 
-        alt="profile" 
-        className="profile-image" 
-      />
-        <h2>
-          {userName}
-        </h2>
+        <img
+          src={
+            `${process.env.PUBLIC_URL}/${newProfileImage}` ||
+            (profileImage
+              ? `${process.env.PUBLIC_URL}/${profileImage}`
+              : `${process.env.PUBLIC_URL}/${defaultImages[0]}`)
+          }
+          alt="profile"
+          className="profile-image"
+        />
+        <h2>{userName}</h2>
       </div>
       <h3 className="recent-t">RECENT PLAY</h3>
       {recentPlays.length > 0 ? (
         <PlayList musics={recentPlays} isProfile={true} />
       ) : (
-        <p style={{ textAlign: "center", marginTop: "20px" }}>No recent plays</p>
+        <p style={{ textAlign: "center", marginTop: "20px" }}>
+          No recent plays
+        </p>
       )}
 
       {isModalOpen && (
@@ -160,46 +168,51 @@ function Profile({ userId }) {
         }}>
           <div className="modal-content">
             <div className="edit-name-wrap">
-            <h3>Edit User Name</h3>
-            <input
-              type="text"
-              value={newUserName}
-              onChange={(e) => setNewUserName(e.target.value)}
-              placeholder="Enter new username"
-              className="edit-name"
-              style={{padding: "8px", marginBottom: "10px" }}
-            />
+              <h3>Edit User Name</h3>
+              <input
+                type="text"
+                value={newUserName}
+                onChange={(e) => setNewUserName(e.target.value)}
+                placeholder="Enter new username"
+                className="edit-name"
+                style={{ padding: "8px", marginBottom: "10px" }}
+              />
             </div>
             <div className="image-select">
               <h3>Select Profile Image</h3>
               <div className="image-options">
-              {defaultImages.map((image, index) => (
-  <img
-    key={index}
-    src={image}
-    alt={`Profile ${index + 1}`}
-    onClick={() => setNewProfileImage(image)}
-    style={{
-      width: "60px",
-      height: "60px",
-      borderRadius: "50%",
-      margin: "5px",
-      cursor: "pointer",
-      border: newProfileImage === image ? "3px solid #98d639" : "none", // focusing line
-    }}
-  />
-))}
+                {defaultImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={`${process.env.PUBLIC_URL}/${image}`}
+                    alt={`Profile ${index + 1}`}
+                    onClick={() => setNewProfileImage(image)}
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      borderRadius: "50%",
+                      margin: "5px",
+                      cursor: "pointer",
+                      border:
+                        newProfileImage === image
+                          ? "3px solid #98d639"
+                          : "none", // 選択状態のボーダー
+                    }}
+                  />
+                ))}
 
-              <div>
-                <label for="file-up" className="up-label">+</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  style={{ marginTop: "10px" }}
-                  id="file-up"
-                />
-              </div>
+                <div>
+                  <label for="file-up" className="up-label">
+                    +
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    style={{ marginTop: "10px" }}
+                    id="file-up"
+                  />
+                </div>
               </div>
             </div>
             <div className="modal-buttons">
