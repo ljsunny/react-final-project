@@ -12,6 +12,16 @@ body {
   background-color: #fce0e0;
 }
 
+.current-page {
+  width: 100%;
+  text-align: center;
+  h1 {
+    color: #d83f3f;
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+}
+
 /*navigation*/
 #navbarNav {
   transition: height 0.3s ease, opacity 0.3s ease;
@@ -163,6 +173,8 @@ body {
   text-align: center;
   border-bottom-left-radius: 66px;
   border-bottom-right-radius: 66px;
+  height: 220px;
+  padding-top: 20px;
 }
 .profileWrap h2 {
   font-size: 20px;
@@ -320,7 +332,8 @@ input[type="file"] {
     min-height: 100vh;
     height: 100%;
   }
-  .loginForm {
+  .loginForm,
+  .regForm {
     width: 80%;
     max-width: 400px;
     height: calc(100vh - 50px);

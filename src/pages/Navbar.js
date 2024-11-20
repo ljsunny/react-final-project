@@ -27,6 +27,9 @@ const currentDisplay = (path) => location.pathname === path;
 return (
   <div className="nav-wrap">
     <nav style={{ backgroundColor: isProfilePage ? "#d83f3f" : undefined }} className="navbar navbar-expand-lg nav-icon">
+      <div className="current-page">
+        <h1><img src="/santa.png"/>Christmas Playlist</h1>
+      </div>
       <div className="container-fluid">
         <button
           className="navbar-toggler"
@@ -39,11 +42,12 @@ return (
         >
           <span className={`navbar-toggler-icon ${isProfilePage ? "icon-white" : "icon-black"}`}></span>
         </button>
+        
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mt-2 mt-lg-0">
           <li className="nav-item d-none d-lg-block nav-t">
-            <img src="/santa.png" alt="logo"/>
+            <img src="./santa.png" alt="logo"/>
             Christmas Playlist</li>
             {/* check if logged in or not */}
             {isLogin ? (

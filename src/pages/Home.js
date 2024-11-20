@@ -13,7 +13,7 @@ export default function Home() {
     const savedRemoveItems = localStorage.getItem("removeItems");
 
     return {
-      points: savedPoints ? parseInt(savedPoints) : 100,
+      points: savedPoints ? parseInt(savedPoints) : 0,
       decoItems: savedDecoItems ? JSON.parse(savedDecoItems) : {
         "deco-item-1": null,
         "deco-item-2": null,
