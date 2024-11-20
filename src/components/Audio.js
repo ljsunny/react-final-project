@@ -3,7 +3,9 @@ import React, { useState, useRef, useEffect } from 'react';
 export default function Audio({src, duration}){
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [points, setPoints] = useState(0);  // 노래 포인트 상태
+  const [points, setPoints] = useState(0);  // point state
+  const [currentTime, setCurrentTime] =useState(0);
+  const [showModal, setShowModal] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -36,21 +38,28 @@ export default function Audio({src, duration}){
   };
 
   const handleTimeUpdate = () => {
-    const currentProgress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
-    setProgress(currentProgress);
+    if(audioRef.current){
+      const currentProgress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+      setCurrentTime(audioRef.current.currentTime);
+      setProgress(currentProgress);
+    }
   };
 
   const handleProgressChange = (e) => {
     const newTime = (e.target.value / 100) * audioRef.current.duration;
-    audioRef.current.currentTime = newTime;
+    if(audioRef.current){
+        audioRef.current.currentTime = newTime;
+    }
   };
 
   const handleSongEnd = () => {
     // When music end, user get 
     const newPoints = points + 2;
+    setShowModal(true);
     setPoints(newPoints);
-    if(!localStorage.getItem)
+    if(!localStorage.getItem){
       localStorage.setItem('points', newPoints);  // localStorage에 포인트 저장
+    }
     else {
       localStorage.setItem('points',Number(localStorage.getItem('points'))+2);
     }
@@ -60,7 +69,8 @@ export default function Audio({src, duration}){
     const remainingSeconds = Math.floor(seconds % 60);
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   };
-
+  //close modal
+  const handleClose = () => setShowModal(false);
   return (
     <div className="audio-player">
       <div className="player-controls">
@@ -74,17 +84,40 @@ export default function Audio({src, duration}){
         />
       </div>
       <div style={{marginBottom:'28px',display:'flex',justifyContent:'space-between',width:'100%'}}>
-        <p>{formatTime(progress)}</p>
+        <p>{formatTime(currentTime)}</p>
         <p>{formatTime(duration)}</p>
       </div>
-      {/* <div className="points-display">
-            <p>Points: {points}</p>
-          </div> 
-      */}
         <a onClick={handlePlayPause} style={{marginBottom:'28px'}}>
-          {isPlaying ? <img src={`${process.env.PUBLIC_URL}/svg/StopBtn.svg`}/> : <img src={`${process.env.PUBLIC_URL}/svg/StopBtn.svg`}/>}
+          {isPlaying ? <img src={`${process.env.PUBLIC_URL}/svg/StopBtn.svg`}/> : <img src={`${process.env.PUBLIC_URL}/svg/playBtn.svg`}/>}
         </a>
       <audio ref={audioRef} src={src} />
+      {
+
+        <div
+          className={`modal fade ${showModal ? "show" : ""}`}
+          style={{ display: showModal ? "block" : "none" }}
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-body">
+                  You got 2 points. Your Total point is {points}.
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={handleClose}>
+                  close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
     </div>
+    
+    
   );
 };
