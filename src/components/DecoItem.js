@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import '../css/treeGrid.css';
+import Modal from "../components/Modal";
 
 export default function DecoItem({ buyItem, switchToMyItems,points }) {
   const [decoration, setDecoration] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false); // to check modal state
+  const [pendingItem, setPendingItem] = useState(null); // pending item
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/decoration.json`)
@@ -12,10 +15,20 @@ export default function DecoItem({ buyItem, switchToMyItems,points }) {
   }, []);
 
   const buyClick = (item) => {
-    const confirm = window.confirm(`if you click the "confirmation", your points reduce ${item.points}`)
-    if (confirm){
-      buyItem(item);
+    // const confirm = window.confirm(`if you click the "confirmation", your points reduce ${item.points}`)
+    // if (confirm){
+    //   buyItem(item);
+    // }
+    setPendingItem(item);
+    setIsModalVisible(true); // display modal
+  };
+
+  const handleModalClose = (confirmed) => {
+    if (confirmed && pendingItem) {
+      buyItem(pendingItem);
     }
+    setIsModalVisible(false); // close modal
+    setPendingItem(null);
   };
 
   return (
@@ -32,7 +45,12 @@ export default function DecoItem({ buyItem, switchToMyItems,points }) {
             </li>
           ))}
         </ul>
-      
+        {isModalVisible && (
+        <Modal
+          message={`If you confirm, your points will be reduced by ${pendingItem?.points}.`}
+          onClose={(confirmed) => handleModalClose(confirmed)}
+        />
+      )}
     </div>
   );
 }
