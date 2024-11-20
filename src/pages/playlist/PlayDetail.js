@@ -1,8 +1,8 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Audio from "../../components/Audio";
 import "../../css/playList.css";
-import HttpService from "../../services/HttpService";
 
 // for recent played music //
 function addRecentPlay(music) {
@@ -17,13 +17,16 @@ export default function PlayDetail() {
   const [music, setMusic] = useState(null);
 
   useEffect(() => {
-      fetch("music.json")
-        .then((response) => response.json())
-        .then((data) =>{
-          const foundMusic = data.find((item) => item.id === Number(id));
-          setMusic(foundMusic)
-        } )
-        .catch((error) => console.error("Error ", error));
+    axios.get(`${process.env.PUBLIC_URL}/music.json`)
+      .then((response) => {
+        const data = response.data; 
+        const foundMusic = data.find((item) => item.id === Number(id));
+        setMusic(foundMusic);
+      })
+      .catch((error) => {
+        console.error("Error ", error); 
+      });
+    
   }, [id]);
 //to show recent play in profile page//
   useEffect(() => {
