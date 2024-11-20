@@ -1,4 +1,4 @@
-# Music Points Tree Project
+# Christmas Music App with Tree Decoration
 
 ### 🎵 A Project for Sign-Up, Login, Listening to Music, Earning Points, and Decorating a Tree to Share with Other Users
 
