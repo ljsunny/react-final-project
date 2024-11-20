@@ -87,12 +87,8 @@ export default function Audio({src, duration}){
         <p>{formatTime(currentTime)}</p>
         <p>{formatTime(duration)}</p>
       </div>
-      {/* <div className="points-display">
-            <p>Points: {points}</p>
-          </div> 
-      */}
         <a onClick={handlePlayPause} style={{marginBottom:'28px'}}>
-          {isPlaying ? <img src={`${process.env.PUBLIC_URL}/svg/StopBtn.svg`}/> : <img src={`${process.env.PUBLIC_URL}/svg/StopBtn.svg`}/>}
+          {isPlaying ? <img src={`${process.env.PUBLIC_URL}/svg/StopBtn.svg`}/> : <img src={`${process.env.PUBLIC_URL}/svg/playBtn.svg`}/>}
         </a>
       <audio ref={audioRef} src={src} />
       {
