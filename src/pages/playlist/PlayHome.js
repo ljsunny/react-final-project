@@ -3,14 +3,20 @@ import PlayDetail from "./PlayDetail";
 import PlayList from "./PlayList";
 import { useState, useEffect } from "react";
 import HttpService from "../../services/HttpService";
+import axios from "axios";
 
 export default function PlayHome() {
   const [musics, setMusics] = useState([]);
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/music.json`)
-    .then((response) => response.json())
-    .then((data) => setMusics(data))
-    .catch((error) => console.error("Error ", error));  
+    axios
+      .get(`${process.env.PUBLIC_URL}/music.json`)
+      .then((response) => {
+        setMusics(response.data); 
+      })
+      .catch((error) => {
+        console.error("Error ", error);
+      });
+    
   }, []);
 
   return (
