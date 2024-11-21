@@ -91,6 +91,7 @@
 .itemList {
   width: 100%;
   margin: 0 auto;
+  padding-bottom: 100px;
 
   .titleArea {
     width: 90%;
@@ -165,6 +166,14 @@
     color: black;
     font-weight: 900;
     font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .itemList {
+    ul {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 }
 

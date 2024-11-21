@@ -28,7 +28,12 @@ return (
   <div className="nav-wrap">
     <nav style={{ backgroundColor: isProfilePage ? "#d83f3f" : undefined }} className="navbar navbar-expand-lg nav-icon">
       <div className="current-page">
-        <h1><img src="/santa.png"/>Christmas Playlist</h1>
+      <Link to="/" aria-current="page" className="page-title">
+        <h1 className={`page-title ${isProfilePage ? "profile-title" : ""}`}>
+          <img src={`${process.env.PUBLIC_URL}/santa.png`} alt="Santa Icon" />
+          Christmas Playlist
+        </h1>  
+        </Link>
       </div>
       <div className="container-fluid">
         <button
@@ -46,10 +51,13 @@ return (
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mt-2 mt-lg-0">
-          <li className="nav-item d-none d-lg-block nav-t">
-
+          
+            <Link to="/" aria-current="page" className="page-title">
+            <li className="nav-item d-none d-lg-block nav-t">
             <img src={`${process.env.PUBLIC_URL}/santa.png`} alt="logo"/>
             Christmas Playlist</li>
+            </Link>
+            
             {/* check if logged in or not */}
             {isLogin ? (
               <>

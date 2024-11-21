@@ -20,6 +20,13 @@ body {
     font-weight: bold;
     font-size: 1.25rem;
   }
+  .profile-title {
+    color: #fff;
+  }
+}
+
+.page-title {
+  text-decoration: none;
 }
 
 /*navigation*/
@@ -47,6 +54,7 @@ body {
   z-index: 1;
   display: flex;
   width: 100%;
+  background-color: #fce0e0;
 }
 .navbar {
   margin-bottom: 0;

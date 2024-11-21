@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Master from "./pages/Master";
 import Login from "./pages/Login";
@@ -39,6 +39,9 @@ function App() {
               </>
             ) : (
               <>
+                <Route path="/" element={<Navigate to="/login" replace />} />
+                <Route path="play/*" element={<Navigate to="/login" replace />} />
+                <Route path="profile" element={<Navigate to="/login" replace />} />
                 <Route path="login" element={<Login onLogin={handleLogin} />} />
                 <Route path="register" element={<Register />} />
               </>

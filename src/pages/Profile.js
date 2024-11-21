@@ -42,7 +42,8 @@ function Profile({ userId }) {
         if (loggedInUser) {
           setUserName(loggedInUser.name || "Default User");
           const savedProfileImage =
-            loggedInUser.profileImage || `${process.env.PUBLIC_URL}/ProfileImgs/santa-user.webp`;
+          // remove the url location "${process.env.PUBLIC_URL}"
+            loggedInUser.profileImage || `/ProfileImgs/santa-user.webp`;
           setProfileImage(savedProfileImage);
           setNewUserName(loggedInUser.name || "Default User");
           setNewProfileImage(savedProfileImage);
@@ -132,7 +133,7 @@ function Profile({ userId }) {
   return (
     <>
       <div className="prof-head">
-        <h1 className="prof-t">Profile</h1>
+        {/* <h1 className="prof-t">Profile</h1> */}
         <button className="edit-profile" onClick={() => setIsModalOpen(true)}>
           <i className="fa-solid fa-pen"></i>
         </button>

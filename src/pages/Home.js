@@ -111,7 +111,7 @@ const buyItem = (item) => {
       {/* Screenshot function */}
       <TakePic targetClass=".tree-area" fileName="merrychristmas.png" />
       <h1 className="treeTitle">
-        <span>{userName}</span>'s Christmas Tree
+        <span>{userName}</span>'s <br/>Christmas Tree
       </h1>
       <div className="d-flex flex-column flex-lg-row">
         <TreeArea decoItems={decoItems} removeItem={removeItem} />
