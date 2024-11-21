@@ -26,7 +26,7 @@ export default function Audio({src, duration}){
         audioRef.current.removeEventListener('ended', handleSongEnd);
       }
     };
-  }, []);
+  }, [handleSongEnd]);
 
   const handlePlayPause = () => {
     if (isPlaying) {
