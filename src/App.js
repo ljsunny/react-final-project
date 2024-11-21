@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="wrap">
       <SnowEffect />
-      <Router>
+      <Router future={{ v7_startTransition: true }}>
         <Routes>
           <Route path="/" element={<Master isLogin={loggedInUserId} />}>
             {loggedInUserId ? (

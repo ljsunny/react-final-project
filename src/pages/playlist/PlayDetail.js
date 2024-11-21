@@ -54,6 +54,7 @@ export default function PlayDetail() {
       <div className="main">
         <div>
           <img
+            alt="music"
             src={`${process.env.PUBLIC_URL}/${music.img}`}
             style={{width:'100%', height:'370px', borderRadius: "30px", objectFit:'cover'}}
           /> 

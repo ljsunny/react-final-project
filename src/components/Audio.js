@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 export default function Audio({src, duration}){
   const [isPlaying, setIsPlaying] = useState(false);
@@ -7,26 +7,6 @@ export default function Audio({src, duration}){
   const [currentTime, setCurrentTime] =useState(0);
   const [showModal, setShowModal] = useState(false);
   const audioRef = useRef(null);
-
-  useEffect(() => {
-    // load point data from localStorage
-    const savedPoints = localStorage.getItem('points');
-    if (savedPoints) {
-      setPoints(parseInt(savedPoints, 10));
-    }
-
-    if (audioRef.current) {
-      audioRef.current.addEventListener('timeupdate', handleTimeUpdate);
-      audioRef.current.addEventListener('ended', handleSongEnd);  // 노래 끝날 때 포인트 추가
-    }
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
-        audioRef.current.removeEventListener('ended', handleSongEnd);
-      }
-    };
-  }, [handleSongEnd]);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -52,23 +32,44 @@ export default function Audio({src, duration}){
     }
   };
 
-  const handleSongEnd = () => {
-    // When music end, user get 
-    const newPoints = points + 2;
-    setShowModal(true);
-    setPoints(newPoints);
-    if(!localStorage.getItem){
-      localStorage.setItem('points', newPoints);  // localStorage에 포인트 저장
-    }
-    else {
-      localStorage.setItem('points',Number(localStorage.getItem('points'))+2);
-    }
-  };
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   };
+
+  const handleSongEnd = useCallback(() => {
+    const newPoints = points + 2;
+    setShowModal(true);
+    setPoints(newPoints);
+    if (!localStorage.getItem('points')) {
+      localStorage.setItem('points', newPoints);  // localStorage에 포인트 저장
+    } else {
+      localStorage.setItem('points', Number(localStorage.getItem('points')) + 2);
+    }
+  }, [points]); // Add points as dependency to update it when it changes
+
+  useEffect(() => {
+    const audioElement = audioRef.current;
+    // load point data from localStorage
+    const savedPoints = localStorage.getItem('points');
+    if (savedPoints) {
+      setPoints(parseInt(savedPoints, 10));
+    }
+
+    if (audioElement) {
+      audioElement.addEventListener('timeupdate', handleTimeUpdate);
+      audioElement.addEventListener('ended', handleSongEnd);  // 노래 끝날 때 포인트 추가
+    }
+
+    return () => {
+      if (audioElement) {
+        audioElement.removeEventListener('timeupdate', handleTimeUpdate);
+        audioElement.removeEventListener('ended', handleSongEnd);
+      }
+    };
+  }, [handleSongEnd]);
+
   //close modal
   const handleClose = () => setShowModal(false);
   return (
@@ -87,9 +88,9 @@ export default function Audio({src, duration}){
         <p>{formatTime(currentTime)}</p>
         <p>{formatTime(duration)}</p>
       </div>
-        <a onClick={handlePlayPause} style={{marginBottom:'28px'}}>
-          {isPlaying ? <img src={`${process.env.PUBLIC_URL}/svg/StopBtn.svg`}/> : <img src={`${process.env.PUBLIC_URL}/svg/playBtn.svg`}/>}
-        </a>
+        <button onClick={handlePlayPause} style={{marginBottom:'28px'}}>
+          {isPlaying ? <img src={`${process.env.PUBLIC_URL}/svg/StopBtn.svg`} alt=""/> : <img src={`${process.env.PUBLIC_URL}/svg/playBtn.svg`} alt=""/>}
+        </button>
       <audio ref={audioRef} src={src} />
       {
 
