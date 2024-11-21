@@ -85,7 +85,9 @@ p{
     gap:32px;
   }
 }
-
+#playBtn {
+  background-color:transparent;
+}
 /* style Audio control*/
 audio {
   width: 100%;
