@@ -15,8 +15,8 @@ export default function MyItemList({ myItems, switchToDeco, points, addMyItem })
         <ul className="MyItem">
             {myItems.map((item, index) => (
             <li key={index} onClick={() => myItemClick(item)}>
-                <img src={item.img} alt={item.deco_name} />
-                <p>{item.deco_name}</p>
+              <img src={`${process.env.PUBLIC_URL}/${item.img}`} alt={item.deco_name} />
+              <p>{item.deco_name}</p>
             </li>
             ))}
         </ul>
