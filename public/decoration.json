@@ -100,12 +100,12 @@
     "img": "/svg/decoration/wreaths.svg"
 },{
     "id": 21,
-    "deco_name": "sock2",
+    "deco_name": "socks",
     "points": 1,
     "img": "/svg/decoration/sock2.svg"
 },{
     "id": 22,
-    "deco_name": "Christmas socks",
+    "deco_name": "socks",
     "points": 3,
     "img": "/svg/decoration/Christmas socks.svg"
 },{
@@ -115,12 +115,12 @@
     "img": "/svg/decoration/Mittens.svg"
 },{
     "id": 24,
-    "deco_name": "Christmas bells",
+    "deco_name": "Bells",
     "points": 3,
     "img": "/svg/decoration/Christmas bells.svg"
 },{
     "id": 25,
-    "deco_name": "Gingerbread house",
+    "deco_name": "house",
     "points": 1,
     "img": "/svg/decoration/Gingerbread house.svg"
 },{
@@ -135,22 +135,22 @@
     "img": "/svg/decoration/Stocking.svg"
 },{
     "id": 28,
-    "deco_name": "Snowman2",
+    "deco_name": "Snowman",
     "points": 4,
     "img": "/svg/decoration/Snowman2.svg"
 },{
     "id": 29,
-    "deco_name": "Father Christmas",
+    "deco_name": "Santa",
     "points": 3,
     "img": "/svg/decoration/Father Christmas.svg"
 },{
     "id": 30,
-    "deco_name": "Rudolph the Reindeer",
+    "deco_name": "Rudolph",
     "points": 3,
     "img": "/svg/decoration/Rudolph the Reindeer.svg"
 },{
     "id": 31,
-    "deco_name": "Gingerbread man",
+    "deco_name": "Gingerbread",
     "points": 2,
     "img": "/svg/decoration/Gingerbread man.svg"
 }]
