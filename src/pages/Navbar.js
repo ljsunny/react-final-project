@@ -27,6 +27,14 @@ const currentDisplay = (path) => location.pathname === path;
 return (
   <div className="nav-wrap">
     <nav style={{ backgroundColor: isProfilePage ? "#d83f3f" : undefined }} className="navbar navbar-expand-lg nav-icon">
+      <div className="current-page">
+      <Link to="/" aria-current="page" className="page-title">
+        <h1 className={`page-title ${isProfilePage ? "profile-title" : ""}`}>
+          <img src={`${process.env.PUBLIC_URL}/santa.png`} alt="Santa Icon" />
+          Christmas Playlist
+        </h1>  
+        </Link>
+      </div>
       <div className="container-fluid">
         <button
           className="navbar-toggler"
@@ -39,12 +47,17 @@ return (
         >
           <span className={`navbar-toggler-icon ${isProfilePage ? "icon-white" : "icon-black"}`}></span>
         </button>
+        
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mt-2 mt-lg-0">
-          <li className="nav-item d-none d-lg-block nav-t">
+          
+            <Link to="/" aria-current="page" className="page-title">
+            <li className="nav-item d-none d-lg-block nav-t">
             <img src={`${process.env.PUBLIC_URL}/santa.png`} alt="logo"/>
             Christmas Playlist</li>
+            </Link>
+            
             {/* check if logged in or not */}
             {isLogin ? (
               <>
@@ -76,7 +89,7 @@ return (
                 </li>
                 <li className={`nav-item ${currentDisplay("/logout") ? "active" : ""}`}>
                   <Link className="nav-link" to="/logout" aria-current="page">
-                  <i class="fa-solid fa-right-from-bracket icon-margin-right d-none d-lg-inline"
+                  <i className="fa-solid fa-right-from-bracket icon-margin-right d-none d-lg-inline"
                                     style={{ color: currentDisplay("/logout") ? "#d83f3f" : "#414141" }}></i>
                     Logout
                   </Link>
@@ -86,7 +99,7 @@ return (
               <>
                 <li className={`nav-item ${currentDisplay("/login") ? "active" : ""}`}>
                   <Link className="nav-link" to="/login" aria-current="page">
-                  <i class="fa-solid fa-right-to-bracket icon-margin-right d-none d-lg-inline"
+                  <i className="fa-solid fa-right-to-bracket icon-margin-right d-none d-lg-inline"
                    style={{ color: currentDisplay("/login") ? "#d83f3f" : "#414141" }}></i>
                     Login
                   </Link>
