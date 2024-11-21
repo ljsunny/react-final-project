@@ -25,9 +25,16 @@ jobs:
         run: npm run build  # build
 
       - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add --all
+          git commit -m "Deploying to gh-pages"
+          git push --force https://github.com/ljsunny/react-final-project.git gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: jamesives/github-pages-deploy-action@v4
         with:
           branch: gh-pages  # deploy branch
           folder: build  # The folder deployed file inside
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
