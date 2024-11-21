@@ -89,7 +89,7 @@ return (
                 </li>
                 <li className={`nav-item ${currentDisplay("/logout") ? "active" : ""}`}>
                   <Link className="nav-link" to="/logout" aria-current="page">
-                  <i class="fa-solid fa-right-from-bracket icon-margin-right d-none d-lg-inline"
+                  <i className="fa-solid fa-right-from-bracket icon-margin-right d-none d-lg-inline"
                                     style={{ color: currentDisplay("/logout") ? "#d83f3f" : "#414141" }}></i>
                     Logout
                   </Link>
@@ -99,7 +99,7 @@ return (
               <>
                 <li className={`nav-item ${currentDisplay("/login") ? "active" : ""}`}>
                   <Link className="nav-link" to="/login" aria-current="page">
-                  <i class="fa-solid fa-right-to-bracket icon-margin-right d-none d-lg-inline"
+                  <i className="fa-solid fa-right-to-bracket icon-margin-right d-none d-lg-inline"
                    style={{ color: currentDisplay("/login") ? "#d83f3f" : "#414141" }}></i>
                     Login
                   </Link>
