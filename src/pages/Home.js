@@ -15,24 +15,22 @@ export default function Home() {
     const savedRemoveItems = localStorage.getItem("removeItems");
 
     return {
-      points: savedPoints ? parseInt(savedPoints) : 100,
-      decoItems: savedDecoItems
-        ? JSON.parse(savedDecoItems)
-        : {
-            "deco-item-1": null,
-            "deco-item-2": null,
-            "deco-item-3": null,
-            "deco-item-4": null,
-            "deco-item-5": null,
-            "deco-item-6": null,
-            "deco-item-7": null,
-            "deco-item-8": null,
-            "deco-item-9": null,
-            "deco-item-10": null,
-            "deco-item-11": null,
-            "deco-item-12": null,
-            "deco-item-13": null,
-          },
+      points: savedPoints ? parseInt(savedPoints) : 0,
+      decoItems: savedDecoItems ? JSON.parse(savedDecoItems) : {
+        "deco-item-1": null,
+        "deco-item-2": null,
+        "deco-item-3": null,
+        "deco-item-4": null,
+        "deco-item-5": null,
+        "deco-item-6": null,
+        "deco-item-7": null,
+        "deco-item-8": null,
+        "deco-item-9": null,
+        "deco-item-10": null,
+        "deco-item-11": null,
+        "deco-item-12": null,
+        "deco-item-13": null
+      },
       removeItems: savedRemoveItems ? JSON.parse(savedRemoveItems) : [],
     };
   };
@@ -113,7 +111,7 @@ const buyItem = (item) => {
       {/* Screenshot function */}
       <TakePic targetClass=".tree-area" fileName="merrychristmas.png" />
       <h1 className="treeTitle">
-        <span>{userName}</span>'s Christmas Tree
+        <span>{userName}</span>'s <br/>Christmas Tree
       </h1>
       <div className="d-flex flex-column flex-lg-row">
         <TreeArea decoItems={decoItems} removeItem={removeItem} />
