@@ -109,6 +109,15 @@ You can access the application at `http://localhost:3000` in your browser.
 When the project runs, if `localStorage` doesn't contain any data, the application will set default data. For example, if there's no music data or points, it will initialize with the default values.
 
 
-## 📝 License
-//add design license
-This project is licensed under the [MIT License](LICENSE).
+### References
+The design for this project was inspired by the following Figma Community resources:
+
+Spotify Redesign - Free UI Kit (Light)
+
+Figma Community Link: Spotify Redesign
+120+ Christmas Icon Pack
+
+Figma Community Link: 120+ Christmas Icon Pack
+Free Christmas Icons By Onabitz
+
+Figma Community Link: Free Christmas Icons By Onabitz
