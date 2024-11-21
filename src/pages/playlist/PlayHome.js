@@ -2,7 +2,6 @@ import {  Routes, Route } from "react-router-dom";
 import PlayDetail from "./PlayDetail";
 import PlayList from "./PlayList";
 import { useState, useEffect } from "react";
-import HttpService from "../../services/HttpService";
 import axios from "axios";
 
 export default function PlayHome() {
