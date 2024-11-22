@@ -18,7 +18,7 @@ const TakePic = ({ targetClass, fileName = "merrychristmas.png" }) => {
     // monitor
     const navBarCollapse = document.getElementById("navbarNav");
     const observer = new MutationObserver(() => {
-        navOpenChecker();
+      navOpenChecker();
     });
 
     if (navBarCollapse) {
@@ -43,14 +43,37 @@ const TakePic = ({ targetClass, fileName = "merrychristmas.png" }) => {
     }
 
     html2canvas(targetElement, {
-        backgroundColor: "#ffe4e4" // set background color of image
-      }).then((canvas) => {
-        const link = document.createElement("a");
-        link.download = fileName;
-        link.href = canvas.toDataURL();
-        link.click();
-      });
-    };
+      backgroundColor: "#ffe4e4", // set background color of image
+    }).then((canvas) => {
+      const link = document.createElement("a");
+      link.download = fileName;
+      link.href = canvas.toDataURL();
+      link.click();
+
+      // Share image using the share API
+      shareImage(canvas);
+    });
+  };
+
+  const shareImage = (canvas) => {
+    if (navigator.share) {
+      canvas.toBlob((blob) => {
+        if (blob) {
+          navigator.share({
+            title: "Check out this tree image!",
+            text: "Here is a beautiful tree image!",
+            files: [new File([blob], "tree-image.png", { type: "image/png" })],
+          }).then(() => {
+            console.log("Image shared successfully!");
+          }).catch((err) => {
+            console.error("Error sharing image: ", err);
+          });
+        }
+      }, "image/png");
+    } else {
+      console.log("Share API not supported on this browser.");
+    }
+  };
 
   if (isHidden) return null;
 
